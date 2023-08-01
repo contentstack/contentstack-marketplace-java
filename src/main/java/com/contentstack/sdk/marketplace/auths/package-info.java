@@ -1,4 +1,1 @@
-/**
- * Useful to access contentstack's app auth component
- */
-package com.contentstack.cms.marketplace.auths;
+package com.contentstack.sdk.marketplace.auths;
