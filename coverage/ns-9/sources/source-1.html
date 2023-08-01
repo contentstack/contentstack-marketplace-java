@@ -1,0 +1,251 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Webhook</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.contentstack.sdk.marketplace.installations.webhook</a>
+</div>
+
+<h1>Coverage Summary for Class: Webhook (com.contentstack.sdk.marketplace.installations.webhook)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Webhook</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.contentstack.sdk.marketplace.installations.webhook;
+&nbsp;
+&nbsp;import com.contentstack.sdk.BaseImplementation;
+&nbsp;import okhttp3.ResponseBody;
+&nbsp;import org.jetbrains.annotations.NotNull;
+&nbsp;import retrofit2.Call;
+&nbsp;import retrofit2.Retrofit;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;public class Webhook implements BaseImplementation {
+&nbsp;
+&nbsp;    private final String installationId;
+&nbsp;    protected HashMap&lt;String, String&gt; headers;
+&nbsp;    private final WebhookService service;
+&nbsp;    protected HashMap&lt;String, Object&gt; params;
+&nbsp;    protected String webhookId;
+&nbsp;
+&nbsp;    // The `Webhook` constructor is initializing the `Webhook` object with the
+&nbsp;    // necessary parameters.
+&nbsp;    public Webhook(Retrofit client, @NotNull String organizationUid, @NotNull String webhookId,
+<b class="fc">&nbsp;                   @NotNull String installationId) {</b>
+<b class="fc">&nbsp;        this.headers = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.params = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.webhookId = webhookId;</b>
+<b class="fc">&nbsp;        this.installationId = installationId;</b>
+<b class="fc">&nbsp;        this.headers.put(&quot;organization_uid&quot;, organizationUid);</b>
+<b class="fc">&nbsp;        this.service = client.create(WebhookService.class);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The List Installations call is used to retrieve a list of installations
+&nbsp;     * inside an organization.
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Use the #addParams method to add any optional parameters to the request
+&nbsp;     * &lt;ul&gt;
+&nbsp;     * &lt;li&gt;(Optional) uid : String(comma separated): The app uid of which
+&nbsp;     * installation need to be listed&lt;/li&gt;
+&nbsp;     * &lt;li&gt;(Optional) installation_uid : String(comma separated): List of
+&nbsp;     * installations uid&lt;/li&gt;
+&nbsp;     * &lt;li&gt;(Optional) target_uid&#39;s : String(comma separated): List of stack api keys
+&nbsp;     * or organization UID&lt;/li&gt;
+&nbsp;     * &lt;li&gt;(Optional) sort : String : Sort field name&lt;/li&gt;
+&nbsp;     * &lt;li&gt;(Optional) order : String : Sort order&lt;/li&gt;
+&nbsp;     * &lt;li&gt;(Optional) limit : Int : Page size&lt;/li&gt;
+&nbsp;     * &lt;li&gt;(Optional) skip : Int : Number of records to skip&lt;/li&gt;
+&nbsp;     * &lt;/ul&gt;
+&nbsp;     *
+&nbsp;     * @return Call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; findExecutionLogs() {
+<b class="fc">&nbsp;        Objects.requireNonNull(this.installationId, &quot;installation uid is required&quot;);</b>
+<b class="fc">&nbsp;        return this.service.findExecutionLogs(this.headers, this.installationId, webhookId, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function fetches execution logs for a given execution ID.
+&nbsp;     *
+&nbsp;     * @param executionId The executionId parameter is a unique identifier for a
+&nbsp;     *                    specific execution. It is
+&nbsp;     *                    used to fetch the execution logs for that particular
+&nbsp;     *                    execution.
+&nbsp;     * @return The method is returning a Call object with a generic type of
+&nbsp;     * ResponseBody.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; fetchExecutionLogs(String executionId) throws IllegalAccessException {
+<b class="fc">&nbsp;        Objects.requireNonNull(this.installationId, &quot;installation uid is required&quot;);</b>
+<b class="fc">&nbsp;        return this.service.fetchExecutionLog(this.headers, this.installationId, webhookId, executionId, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function retries the execution of a webhook with the given execution ID.
+&nbsp;     *
+&nbsp;     * @param executionId The executionId parameter is a string that represents the
+&nbsp;     *                    unique identifier of an
+&nbsp;     *                    execution. It is used to identify a specific execution
+&nbsp;     *                    that needs to be retried.
+&nbsp;     * @return Call object.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; retryExecution(@NotNull String executionId) throws IllegalAccessException {
+<b class="fc">&nbsp;        Objects.requireNonNull(this.installationId, &quot;installation uid is required&quot;);</b>
+<b class="fc">&nbsp;        return this.service.retryExecution(this.headers, this.installationId, webhookId, executionId, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds a header with the specified key and value to this location and returns
+&nbsp;     * the updated location.
+&nbsp;     *
+&nbsp;     * @param key   the key of the header to be added
+&nbsp;     * @param value the value of the header to be added
+&nbsp;     * @return a new {@link Webhook} object with the specified header added
+&nbsp;     * @throws NullPointerException if the key or value argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public Webhook addParam(@NotNull String key, @NotNull Object value) {
+<b class="fc">&nbsp;        this.params.put(key, value);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds a header with the specified key and value to this location and returns
+&nbsp;     * the updated location.
+&nbsp;     *
+&nbsp;     * @param key   the key of the header to be added
+&nbsp;     * @param value the value of the header to be added
+&nbsp;     * @return a new {@link Webhook} object with the specified header added
+&nbsp;     * @throws NullPointerException if the key or value argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public Webhook addHeader(@NotNull String key, @NotNull String value) {
+<b class="fc">&nbsp;        this.headers.put(key, value);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds the specified parameters to this location and returns the updated
+&nbsp;     * location.
+&nbsp;     *
+&nbsp;     * @param params a {@link HashMap} containing the parameters to be added
+&nbsp;     * @return a new {@link Webhook} object with the specified parameters added
+&nbsp;     * @throws NullPointerException if the params argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public Webhook addParams(@NotNull HashMap params) {
+<b class="fc">&nbsp;        this.params.putAll(params);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds the specified parameters to this location and returns the updated
+&nbsp;     * location.
+&nbsp;     *
+&nbsp;     * @param headers a {@link HashMap} containing the parameters to be added
+&nbsp;     * @return a new {@link Webhook} object with the specified parameters added
+&nbsp;     * @throws NullPointerException if the params argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public Webhook addHeaders(@NotNull HashMap headers) {
+<b class="fc">&nbsp;        this.headers.putAll(headers);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-27 19:56</div>
+</div>
+</body>
+</html>

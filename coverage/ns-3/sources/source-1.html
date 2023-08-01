@@ -1,0 +1,380 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > App</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.contentstack.sdk.marketplace.apps</a>
+</div>
+
+<h1>Coverage Summary for Class: App (com.contentstack.sdk.marketplace.apps)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">App</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (43/43)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.contentstack.sdk.marketplace.apps;
+&nbsp;
+&nbsp;import com.contentstack.sdk.BaseImplementation;
+&nbsp;import com.contentstack.sdk.marketplace.apps.hosting.Hosting;
+&nbsp;import com.contentstack.sdk.marketplace.apps.oauth.Oauth;
+&nbsp;import okhttp3.ResponseBody;
+&nbsp;import org.jetbrains.annotations.NotNull;
+&nbsp;import org.json.simple.JSONObject;
+&nbsp;import retrofit2.Call;
+&nbsp;import retrofit2.Retrofit;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;/**
+&nbsp; * App/Manifest is used for creating/updating/deleting app in your Contentstack
+&nbsp; * organization.
+&nbsp; *
+&nbsp; * @author ishaileshmishra
+&nbsp; * @version v1.0.0
+&nbsp; * @since 2023 -APR-15
+&nbsp; */
+&nbsp;public class App implements BaseImplementation {
+&nbsp;
+&nbsp;    private final AppService service;
+&nbsp;    protected HashMap&lt;String, String&gt; headers;
+&nbsp;    protected HashMap&lt;String, Object&gt; params;
+&nbsp;    private String appUid;
+&nbsp;    private final Retrofit client;
+&nbsp;    private final static String ORGANIZATION_UID = &quot;organization_uid&quot;;
+&nbsp;    private final static String ERROR_NO_ORGANIZATION_UID = &quot;Organization uid could not be empty&quot;;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new Organization.
+&nbsp;     *
+&nbsp;     * @param client          The retrofit client
+&nbsp;     * @param organizationUid the organization uid
+&nbsp;     */
+<b class="fc">&nbsp;    public App(Retrofit client, @NotNull String organizationUid) {</b>
+<b class="fc">&nbsp;        this.client = client;</b>
+<b class="fc">&nbsp;        this.headers = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.params = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        Objects.requireNonNull(organizationUid, ERROR_NO_ORGANIZATION_UID);</b>
+<b class="fc">&nbsp;        this.headers.put(ORGANIZATION_UID, organizationUid);</b>
+<b class="fc">&nbsp;        this.service = client.create(AppService.class);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Instantiates a new App/Manifest.
+&nbsp;     *
+&nbsp;     * @param client           The retrofit client
+&nbsp;     * @param organizationUid= The uid of the organization
+&nbsp;     * @param uid              The app uid
+&nbsp;     */
+<b class="fc">&nbsp;    public App(Retrofit client, @NotNull String organizationUid, @NotNull String uid) {</b>
+<b class="fc">&nbsp;        this.client = client;</b>
+<b class="fc">&nbsp;        this.headers = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.params = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        Objects.requireNonNull(organizationUid, ERROR_NO_ORGANIZATION_UID);</b>
+<b class="fc">&nbsp;        this.headers.put(ORGANIZATION_UID, organizationUid);</b>
+<b class="fc">&nbsp;        Objects.requireNonNull(uid, &quot;Manifest uid is required&quot;);</b>
+<b class="fc">&nbsp;        this.appUid = uid;</b>
+<b class="fc">&nbsp;        this.service = client.create(AppService.class);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds a header with the specified key and value to this location and returns
+&nbsp;     * the updated location.
+&nbsp;     *
+&nbsp;     * @param key   the key of the header to be added
+&nbsp;     * @param value the value of the header to be added
+&nbsp;     * @return a new {@link App} object with the specified header added
+&nbsp;     * @throws NullPointerException if the key or value argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public App addParam(@NotNull String key, @NotNull Object value) {
+<b class="fc">&nbsp;        this.params.put(key, value);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds a header with the specified key and value to this location and returns
+&nbsp;     * the updated location.
+&nbsp;     *
+&nbsp;     * @param key   the key of the header to be added
+&nbsp;     * @param value the value of the header to be added
+&nbsp;     * @return a new {@link App} object with the specified header added
+&nbsp;     * @throws NullPointerException if the key or value argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public App addHeader(@NotNull String key, @NotNull String value) {
+<b class="fc">&nbsp;        this.headers.put(key, value);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds the specified parameters to this location and returns the updated
+&nbsp;     * location.
+&nbsp;     *
+&nbsp;     * @param params a {@link HashMap} containing the parameters to be added
+&nbsp;     * @return a new {@link App} object with the specified parameters added
+&nbsp;     * @throws NullPointerException if the params argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public App addParams(@NotNull HashMap params) {
+<b class="fc">&nbsp;        this.params.putAll(params);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds the specified parameters to this location and returns the updated
+&nbsp;     * location.
+&nbsp;     *
+&nbsp;     * @param headers a {@link HashMap} containing the parameters to be added
+&nbsp;     * @return a new {@link App} object with the specified parameters added
+&nbsp;     * @throws NullPointerException if the params argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public App addHeaders(@NotNull HashMap headers) {
+<b class="fc">&nbsp;        this.headers.putAll(headers);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create installation call.
+&nbsp;     *
+&nbsp;     * @param body the body
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; createInstallation(@NotNull JSONObject body) {
+<b class="fc">&nbsp;        return this.service.createInstallation(this.headers, this.appUid, body, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update version call.
+&nbsp;     *
+&nbsp;     * @param body the body
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; updateVersion(@NotNull JSONObject body) {
+<b class="fc">&nbsp;        return this.service.updateVersion(this.headers, this.appUid, body, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find app authorizations call.
+&nbsp;     *
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; findAppAuthorizations() {
+<b class="fc">&nbsp;        return service.findAppAuthorizations(this.headers, this.appUid, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Delete authorization call.
+&nbsp;     *
+&nbsp;     * @param authorizationUid the authorization uid
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; deleteAuthorization(@NotNull String authorizationUid) {
+<b class="fc">&nbsp;        return service.deleteAuthorization(this.headers, this.appUid, authorizationUid);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find app installations call.
+&nbsp;     *
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; findAppInstallations() {
+<b class="fc">&nbsp;        return service.listAppInstallations(this.headers, this.appUid, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Find apps call.
+&nbsp;     *
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; findApps() {
+<b class="fc">&nbsp;        return service.listApps(this.headers, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create app call.
+&nbsp;     *
+&nbsp;     * @param body the body
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; createApp(@NotNull JSONObject body) {
+<b class="fc">&nbsp;        return service.createApp(this.headers, this.params, body);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Fetch app call.
+&nbsp;     *
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; fetchApp() {
+<b class="fc">&nbsp;        return service.fetchApp(this.headers, this.appUid, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Update app call.
+&nbsp;     *
+&nbsp;     * @param body the body
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; updateApp(@NotNull JSONObject body) {
+<b class="fc">&nbsp;        return service.updateApp(this.headers, this.appUid, body);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Delete app call.
+&nbsp;     *
+&nbsp;     * @return the call
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; deleteApp() {
+<b class="fc">&nbsp;        return service.delete(this.headers, this.appUid);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function returns a call to list app requests with specified headers, app
+&nbsp;     * UID, and parameters.
+&nbsp;     *
+&nbsp;     * @return The method is returning a Call object with a generic type of
+&nbsp;     * ResponseBody.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; findAppRequests() {
+<b class="fc">&nbsp;        return service.listAppRequests(this.headers, this.appUid, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns Instance of oauth
+&nbsp;     *
+&nbsp;     * @return the oauth
+&nbsp;     */
+&nbsp;    public Oauth oauth() {
+<b class="fc">&nbsp;        String orgId = this.headers.get(ORGANIZATION_UID);</b>
+<b class="fc">&nbsp;        return new Oauth(this.client, orgId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Returns Instance of oauth
+&nbsp;     *
+&nbsp;     * @param id the app uid
+&nbsp;     * @return the oauth
+&nbsp;     */
+&nbsp;    public Oauth oauth(@NotNull String id) {
+<b class="fc">&nbsp;        String orgId = this.headers.get(ORGANIZATION_UID);</b>
+<b class="fc">&nbsp;        return new Oauth(this.client, orgId, id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Hosting hosting.
+&nbsp;     *
+&nbsp;     * @return the instance of hosting
+&nbsp;     */
+&nbsp;    public Hosting hosting() {
+<b class="fc">&nbsp;        String orgId = this.headers.get(ORGANIZATION_UID);</b>
+<b class="fc">&nbsp;        return new Hosting(this.client, orgId, this.appUid);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Hosting hosting.
+&nbsp;     *
+&nbsp;     * @param appId the app id
+&nbsp;     * @return the instance of hosting
+&nbsp;     */
+&nbsp;    public Hosting hosting(@NotNull String appId) {
+<b class="fc">&nbsp;        String orgId = this.headers.get(ORGANIZATION_UID);</b>
+<b class="fc">&nbsp;        return new Hosting(this.client, orgId, appId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-27 19:56</div>
+</div>
+</body>
+</html>

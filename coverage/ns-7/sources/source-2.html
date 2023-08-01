@@ -1,0 +1,159 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > InstallationService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.contentstack.sdk.marketplace.installations</a>
+</div>
+
+<h1>Coverage Summary for Class: InstallationService (com.contentstack.sdk.marketplace.installations)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">InstallationService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.contentstack.sdk.marketplace.installations;
+&nbsp;
+&nbsp;import okhttp3.ResponseBody;
+&nbsp;import org.json.simple.JSONObject;
+&nbsp;import retrofit2.Call;
+&nbsp;import retrofit2.http.*;
+&nbsp;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;/**
+&nbsp; * The interface Installation service.
+&nbsp; */
+&nbsp;public interface InstallationService {
+&nbsp;
+&nbsp;        @GET(&quot;installations/view/apps&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; listInstalledApps(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @GET(&quot;installations&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; listInstallations(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @GET(&quot;installations/{id}&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; getInstallations(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @Path(&quot;id&quot;) String id,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @GET(&quot;installations/{id}/installationData&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; getInstallationData(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @Path(&quot;id&quot;) String id,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @PUT(&quot;installations/{id}&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; updateInstallation(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @Path(&quot;id&quot;) String id,
+&nbsp;                        @Body JSONObject requestBody,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @GET(&quot;installations/view/users&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; listInstalledUsers(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @GET(&quot;installations/view/stacks&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; listInstalledStacks(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @DELETE(&quot;installations/{id}&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; uninstall(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @Path(&quot;id&quot;) String id);
+&nbsp;
+&nbsp;        @GET(&quot;installations/{id}/configuration&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; getAppConfiguration(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @Path(&quot;id&quot;) String id,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @GET(&quot;installations/{id}/server-configuration&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; getServerConfiguration(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @Path(&quot;id&quot;) String id,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @PUT(&quot;installations/{id}/server-configuration&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; updateServerConfiguration(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @Path(&quot;id&quot;) String id,
+&nbsp;                        @Body JSONObject body,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @PUT(&quot;installations/{id}/configuration&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; updateStackConfiguration(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @Path(&quot;id&quot;) String id,
+&nbsp;                        @Body JSONObject body,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;        @POST(&quot;installations/{id}/token&quot;)
+&nbsp;        Call&lt;ResponseBody&gt; createInstallationToken(
+&nbsp;                        @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;                        @Path(&quot;id&quot;) String id,
+&nbsp;                        @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-27 19:56</div>
+</div>
+</body>
+</html>
