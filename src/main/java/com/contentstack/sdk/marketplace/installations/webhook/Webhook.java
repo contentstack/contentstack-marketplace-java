@@ -63,7 +63,7 @@ public class Webhook implements BaseImplementation {
      *                    execution.
      * @return instance call
      */
-    public Call<ResponseBody> fetchExecutionLogs(String executionId) throws IllegalAccessException {
+    public Call<ResponseBody> fetchExecutionLogs(String executionId) {
         Objects.requireNonNull(this.installationId, "installation uid is required");
         return this.service.fetchExecutionLog(this.headers, this.installationId, webhookId, executionId, this.params);
     }
@@ -77,7 +77,7 @@ public class Webhook implements BaseImplementation {
      *                    that needs to be retried.
      * @return instance call.
      */
-    public Call<ResponseBody> retryExecution(@NotNull String executionId) throws IllegalAccessException {
+    public Call<ResponseBody> retryExecution(@NotNull String executionId) {
         Objects.requireNonNull(this.installationId, "installation uid is required");
         return this.service.retryExecution(this.headers, this.installationId, webhookId, executionId, this.params);
     }
