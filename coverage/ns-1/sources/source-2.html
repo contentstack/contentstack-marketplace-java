@@ -1,0 +1,132 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > BaseImplementation</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.contentstack.sdk</a>
+</div>
+
+<h1>Coverage Summary for Class: BaseImplementation (com.contentstack.sdk)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">BaseImplementation</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.contentstack.sdk;
+&nbsp;
+&nbsp;import org.jetbrains.annotations.NotNull;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;
+&nbsp;/**
+&nbsp; * The interface Parametron.
+&nbsp; */
+&nbsp;public interface BaseImplementation {
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function adds a parameter to a collection using a key-value pair.
+&nbsp;     *
+&nbsp;     * @param &lt;T&gt;   the type of the parameter
+&nbsp;     * @param key   A string representing the key of the parameter. It cannot be
+&nbsp;     *              null and must be
+&nbsp;     *              provided as a non-null value.
+&nbsp;     * @param value The &quot;value&quot; parameter is of type Object, which means it can
+&nbsp;     *              accept any type of
+&nbsp;     *              object as its value.
+&nbsp;     * @return The method is returning an object of type T.
+&nbsp;     */
+&nbsp;    public &lt;T&gt; T addParam(@NotNull String key, @NotNull Object value);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function adds a header with a key-value pair to a request.
+&nbsp;     *
+&nbsp;     * @param &lt;T&gt;   the type of the parameter
+&nbsp;     * @param key   The key parameter is a string that represents the name or
+&nbsp;     *              identifier of the header.
+&nbsp;     *              It is used to specify the type of information being sent in the
+&nbsp;     *              header.
+&nbsp;     * @param value The value parameter is a string that represents the value of the
+&nbsp;     *              header.
+&nbsp;     * @return The method is returning an object of type T.
+&nbsp;     */
+&nbsp;    public &lt;T&gt; T addHeader(@NotNull String key, @NotNull String value);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function &quot;addParams&quot; takes a HashMap of String keys and Object values as
+&nbsp;     * input and returns a
+&nbsp;     * generic type T.
+&nbsp;     *
+&nbsp;     * @param &lt;T&gt;    the type of the parameter
+&nbsp;     * @param params The &quot;params&quot; parameter is a HashMap that maps String keys to
+&nbsp;     *               Object values. It is
+&nbsp;     *               annotated with @NotNull, indicating that it cannot be null.
+&nbsp;     * @return The method is returning an object of type T.
+&nbsp;     */
+&nbsp;    public &lt;T&gt; T addParams(@NotNull HashMap&lt;String, Object&gt; params);
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function adds headers to a HashMap.
+&nbsp;     *
+&nbsp;     * @param &lt;T&gt;     the type of the parameter
+&nbsp;     * @param headers A HashMap containing key-value pairs of headers, where the key
+&nbsp;     *                is a String
+&nbsp;     *                representing the header name and the value is a String
+&nbsp;     *                representing the header value.
+&nbsp;     * @return The method is returning an object of type T.
+&nbsp;     */
+&nbsp;    public &lt;T&gt; T addHeaders(@NotNull HashMap&lt;String, String&gt; headers);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-27 19:56</div>
+</div>
+</body>
+</html>

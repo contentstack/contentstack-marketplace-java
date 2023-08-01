@@ -1,0 +1,366 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > Hosting</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.contentstack.sdk.marketplace.apps.hosting</a>
+</div>
+
+<h1>Coverage Summary for Class: Hosting (com.contentstack.sdk.marketplace.apps.hosting)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Hosting</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (32/32)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.contentstack.sdk.marketplace.apps.hosting;
+&nbsp;
+&nbsp;import com.contentstack.sdk.BaseImplementation;
+&nbsp;import okhttp3.ResponseBody;
+&nbsp;import org.jetbrains.annotations.NotNull;
+&nbsp;import org.json.simple.JSONObject;
+&nbsp;import retrofit2.Call;
+&nbsp;import retrofit2.Retrofit;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;public class Hosting implements BaseImplementation {
+&nbsp;    private final HostingService service;
+&nbsp;    protected HashMap&lt;String, String&gt; headers;
+&nbsp;    protected HashMap&lt;String, Object&gt; params;
+&nbsp;    protected final String appId;
+&nbsp;
+&nbsp;    // Instantiates a new Hosting
+&nbsp;    // The `public Hosting(Retrofit client, String organizationId, @NotNull String
+&nbsp;    // appId)` constructor
+&nbsp;    // is used to initialize the `Hosting` object. It takes three parameters:
+&nbsp;    // `client`,
+&nbsp;    // `organizationId`, and `appId`.
+<b class="fc">&nbsp;    public Hosting(Retrofit client, String organizationId, @NotNull String appId) {</b>
+<b class="fc">&nbsp;        this.headers = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.params = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        Objects.requireNonNull(appId, &quot;app id/manifest uid is required&quot;);</b>
+<b class="fc">&nbsp;        this.appId = appId;</b>
+<b class="fc">&nbsp;        Objects.requireNonNull(organizationId, &quot;Organization uid could not be empty&quot;);</b>
+<b class="fc">&nbsp;        this.headers.put(&quot;organization_uid&quot;, organizationId);</b>
+<b class="fc">&nbsp;        this.service = client.create(HostingService.class);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function fetches hosting data using the provided headers, app ID, and
+&nbsp;     * parameters. It Gets hosting configuration of your App Manifest
+&nbsp;     *
+&nbsp;     * @return The method is returning a Call object with a generic type of
+&nbsp;     * ResponseBody.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; fetchHosting() {
+<b class="fc">&nbsp;        return this.service.getHosting(this.headers, this.appId, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Create signed upload url call.
+&nbsp;     * The function returns a signed upload URL by making a request to a service
+&nbsp;     * with the provided headers and app ID.
+&nbsp;     *
+&nbsp;     * @return The method is returning a Call object with a generic type of
+&nbsp;     * ResponseBody.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; createSignedUploadUrl() {
+<b class="fc">&nbsp;        return this.service.signedUploadUrl(this.headers, this.appId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function uploads a file to a specified URL using the provided headers and
+&nbsp;     * parameters.
+&nbsp;     *
+&nbsp;     * @param url The URL where the file will be uploaded to.
+&nbsp;     * @return The method is returning a Call object with a ResponseBody type.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; uploadFile(@NotNull String url) {
+<b class="fc">&nbsp;        Objects.requireNonNull(url, &quot;Url is required to upload the file&quot;);</b>
+<b class="fc">&nbsp;        return this.service.uploadFile(url, this.headers, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function creates a deployment using the provided JSON body.
+&nbsp;     *
+&nbsp;     * @param body The `body` parameter is a `JSONObject` that contains the data
+&nbsp;     *             needed to create a
+&nbsp;     *             deployment.
+&nbsp;     * @return The method is returning a Call object with a ResponseBody type.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; createDeployment(@NotNull JSONObject body) {
+<b class="fc">&nbsp;        return this.service.createDeployments(this.headers, this.appId, body, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function `findDeployments()` returns a `Call` object that makes a request
+&nbsp;     * to find deployments
+&nbsp;     * using the provided headers, app ID, and parameters.
+&nbsp;     *
+&nbsp;     * @return The method is returning a Call object with a generic type of
+&nbsp;     * ResponseBody.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; findDeployments() {
+<b class="fc">&nbsp;        return this.service.findDeployments(this.headers, this.appId, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function fetches a deployment using the provided deployment ID.
+&nbsp;     *
+&nbsp;     * @param deploymentId The deploymentId is a unique identifier for a deployment.
+&nbsp;     *                     It is used to retrieve
+&nbsp;     *                     information about a specific deployment.
+&nbsp;     * @return The method is returning a `Call&lt;ResponseBody&gt;` object.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; fetchDeployment(@NotNull String deploymentId) {
+<b class="fc">&nbsp;        Objects.requireNonNull(this.appId, &quot;App uid is required&quot;);</b>
+<b class="fc">&nbsp;        Objects.requireNonNull(deploymentId, &quot;deploymentId is required to get deployment&quot;);</b>
+<b class="fc">&nbsp;        return this.service.fetchDeployment(this.headers, this.appId, deploymentId, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function returns the latest live deployment by making an API call.
+&nbsp;     *
+&nbsp;     * @return The method is returning a `Call` object with a generic type of
+&nbsp;     * `ResponseBody`.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; getLatestLiveDeployment() {
+<b class="fc">&nbsp;        return this.service.fetchLatestLiveDeployment(this.headers, this.appId, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function `findDeploymentLogs` returns a `Call` object that retrieves
+&nbsp;     * deployment logs based on
+&nbsp;     * the provided deployment ID.
+&nbsp;     *
+&nbsp;     * @param deploymentId The deployment ID is a unique identifier for a specific
+&nbsp;     *                     deployment. It is used
+&nbsp;     *                     to identify and retrieve the logs for a particular
+&nbsp;     *                     deployment.
+&nbsp;     * @return The method is returning a `Call` object with a generic type of
+&nbsp;     * `ResponseBody`.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; findDeploymentLogs(@NotNull String deploymentId) {
+<b class="fc">&nbsp;        return this.service.findDeploymentLogs(this.headers, this.appId, deploymentId, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function creates a signed download URL using the provided headers, app
+&nbsp;     * ID, and parameters.
+&nbsp;     *
+&nbsp;     * @return The method is returning a `Call` object with a generic type of
+&nbsp;     * `ResponseBody`.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; createSignedDownloadUrl() {
+<b class="fc">&nbsp;        return this.service.createSignedDownloadUrl(this.headers, this.appId, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function `downloadFile` downloads a file from a given URL using the
+&nbsp;     * provided headers and
+&nbsp;     * parameters.
+&nbsp;     *
+&nbsp;     * @param url The URL of the file that you want to download.
+&nbsp;     * @return The method is returning a `Call&lt;ResponseBody&gt;` object.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; downloadFile(@NotNull String url) {
+<b class="fc">&nbsp;        return this.service.downloadFile(url, this.headers, this.params);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function enables or disables hosting for a specific application.
+&nbsp;     * It is used to enable or disable the hosting of an app.
+&nbsp;     * &lt;br&gt;
+&nbsp;     *
+&nbsp;     * &lt;b&gt;ACL:&lt;/b&gt;
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Organisation Admins
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Organisation Owners
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Stack Owners
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Stack Admins
+&nbsp;     *
+&nbsp;     * @return The method is returning a Call object with a ResponseBody type.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; enableToggleHosting() {
+<b class="fc">&nbsp;        Objects.requireNonNull(this.appId, &quot;App uid is required&quot;);</b>
+<b class="fc">&nbsp;        return this.service.toggleEnableHosting(this.headers, this.appId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function `disableToggleHosting()` makes a network call to disable hosting
+&nbsp;     * for a specific app.
+&nbsp;     * The toggle hosting call is used to disable the hosting of an app.
+&nbsp;     * &lt;br&gt;
+&nbsp;     *
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Organisation Admins
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Organisation Owners
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Stack Owners
+&nbsp;     * &lt;p&gt;
+&nbsp;     * Stack Admins
+&nbsp;     *
+&nbsp;     * @return The method is returning a Call object with a ResponseBody type.
+&nbsp;     */
+&nbsp;    public Call&lt;ResponseBody&gt; disableToggleHosting() {
+<b class="fc">&nbsp;        return this.service.toggleDisableHosting(this.headers, this.appId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds a header with the specified key and value to this location and returns
+&nbsp;     * the updated location.
+&nbsp;     *
+&nbsp;     * @param key   the key of the header to be added
+&nbsp;     * @param value the value of the header to be added
+&nbsp;     * @return a new {@link Hosting} object with the specified header added
+&nbsp;     * @throws NullPointerException if the key or value argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public Hosting addParam(@NotNull String key, @NotNull Object value) {
+<b class="fc">&nbsp;        this.params.put(key, value);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds a header with the specified key and value to this location and returns
+&nbsp;     * the updated location.
+&nbsp;     *
+&nbsp;     * @param key   the key of the header to be added
+&nbsp;     * @param value the value of the header to be added
+&nbsp;     * @return a new {@link Hosting} object with the specified header added
+&nbsp;     * @throws NullPointerException if the key or value argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public Hosting addHeader(@NotNull String key, @NotNull String value) {
+<b class="fc">&nbsp;        this.headers.put(key, value);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds the specified parameters to this location and returns the updated
+&nbsp;     * location.
+&nbsp;     *
+&nbsp;     * @param params a {@link HashMap} containing the parameters to be added
+&nbsp;     * @return a new {@link Hosting} object with the specified parameters added
+&nbsp;     * @throws NullPointerException if the params argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public Hosting addParams(@NotNull HashMap params) {
+<b class="fc">&nbsp;        this.params.putAll(params);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Adds the specified parameters to this location and returns the updated
+&nbsp;     * location.
+&nbsp;     *
+&nbsp;     * @param headers a {@link HashMap} containing the parameters to be added
+&nbsp;     * @return a new {@link Hosting} object with the specified parameters added
+&nbsp;     * @throws NullPointerException if the params argument is null
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public Hosting addHeaders(@NotNull HashMap headers) {
+<b class="fc">&nbsp;        this.headers.putAll(headers);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-27 19:56</div>
+</div>
+</body>
+</html>

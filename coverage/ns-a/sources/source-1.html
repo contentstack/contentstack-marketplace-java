@@ -1,0 +1,248 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > AppRequest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.contentstack.sdk.marketplace.request</a>
+</div>
+
+<h1>Coverage Summary for Class: AppRequest (com.contentstack.sdk.marketplace.request)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AppRequest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.contentstack.sdk.marketplace.request;
+&nbsp;
+&nbsp;import com.contentstack.sdk.BaseImplementation;
+&nbsp;import okhttp3.ResponseBody;
+&nbsp;import org.jetbrains.annotations.NotNull;
+&nbsp;import org.json.simple.JSONObject;
+&nbsp;import retrofit2.Call;
+&nbsp;import retrofit2.Retrofit;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;public class AppRequest implements BaseImplementation {
+&nbsp;
+&nbsp;    private final RequestService service;
+&nbsp;    private final Map&lt;String, String&gt; headers;
+&nbsp;    private final Map&lt;String, Object&gt; queryParams;
+&nbsp;
+&nbsp;    // The `public AppRequest(@NotNull Retrofit client, @NotNull String orgId)`
+&nbsp;    // constructor is initializing
+&nbsp;    // the `AppRequest` object.
+<b class="fc">&nbsp;    public AppRequest(@NotNull Retrofit client, @NotNull String orgId) {</b>
+<b class="fc">&nbsp;        this.service = client.create(RequestService.class);</b>
+<b class="fc">&nbsp;        this.headers = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;        this.headers.put(&quot;organization_uid&quot;, orgId);</b>
+<b class="fc">&nbsp;        this.queryParams = new HashMap&lt;&gt;();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function creates a network call to create a resource using the provided
+&nbsp;     * JSON data.
+&nbsp;     * 
+&nbsp;     * @param data The `data` parameter is a `JSONObject` that contains the data to
+&nbsp;     *             be sent in the request
+&nbsp;     *             body.
+&nbsp;     * @return The method is returning a Call object with a generic type of
+&nbsp;     *         ResponseBody.
+&nbsp;     */
+&nbsp;    Call&lt;ResponseBody&gt; create(JSONObject data) {
+<b class="fc">&nbsp;        return this.service.create(this.headers, data);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function returns a call to list requests with specified headers and query
+&nbsp;     * parameters.
+&nbsp;     * 
+&nbsp;     * @return The method is returning a Call object with a generic type of
+&nbsp;     *         ResponseBody.
+&nbsp;     */
+&nbsp;    Call&lt;ResponseBody&gt; find() {
+<b class="fc">&nbsp;        return this.service.listRequests(this.headers, this.queryParams);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function returns a call to list requested stacks with the provided
+&nbsp;     * headers and query parameters.
+&nbsp;     * 
+&nbsp;     * @return The method is returning a `Call` object with a generic type of
+&nbsp;     *         `ResponseBody`.
+&nbsp;     */
+&nbsp;    Call&lt;ResponseBody&gt; findRequestedStacks() {
+<b class="fc">&nbsp;        return this.service.listRequestedStacks(this.headers, this.queryParams);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function `delete` sends a request to delete a specific request identified
+&nbsp;     * by its `requestId`.
+&nbsp;     * 
+&nbsp;     * @param requestId The `requestId` parameter is a unique identifier for the
+&nbsp;     *                  request that needs to be
+&nbsp;     *                  deleted.
+&nbsp;     * @return The method is returning a Call object with a generic type of
+&nbsp;     *         ResponseBody.
+&nbsp;     */
+&nbsp;    Call&lt;ResponseBody&gt; delete(String requestId) {
+<b class="fc">&nbsp;        return this.service.deleteRequest(this.headers, requestId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function adds a parameter to the query parameters map and returns the
+&nbsp;     * updated AppRequest object.
+&nbsp;     * 
+&nbsp;     * @param key   A string representing the key of the parameter.
+&nbsp;     * @param value The &quot;value&quot; parameter is of type Object and represents the value
+&nbsp;     *              associated with the
+&nbsp;     *              given key in the queryParams map.
+&nbsp;     * @return The method is returning an instance of the `AppRequest` class.
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public AppRequest addParam(@NotNull String key, @NotNull Object value) {
+<b class="fc">&nbsp;        this.queryParams.put(key, value);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function adds a header to the headers map and returns the updated
+&nbsp;     * AppRequest object.
+&nbsp;     * 
+&nbsp;     * @param key   The key parameter is a String that represents the name of the
+&nbsp;     *              header.
+&nbsp;     * @param value The value parameter is a string that represents the value of the
+&nbsp;     *              header.
+&nbsp;     * @return The method is returning an instance of the AppRequest class.
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public AppRequest addHeader(@NotNull String key, @NotNull String value) {
+<b class="fc">&nbsp;        this.headers.put(key, value);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function adds all the key-value pairs from the given HashMap to the
+&nbsp;     * queryParams HashMap and
+&nbsp;     * returns the updated AppRequest object.
+&nbsp;     * 
+&nbsp;     * @param params A HashMap object named &quot;params&quot;
+&nbsp;     * @return The method is returning an instance of the `AppRequest` class.
+&nbsp;     */
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public AppRequest addParams(@NotNull HashMap params) {
+<b class="fc">&nbsp;        this.queryParams.putAll(params);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * The function adds headers to a HashMap and returns the updated AppRequest
+&nbsp;     * object.
+&nbsp;     * 
+&nbsp;     * @param headers The &quot;headers&quot; parameter is a HashMap object that contains
+&nbsp;     *                key-value pairs
+&nbsp;     *                representing the headers to be added to an AppRequest object.
+&nbsp;     * @return The method is returning an instance of the `AppRequest` class.
+&nbsp;     */
+&nbsp;
+&nbsp;    @SuppressWarnings(&quot;unchecked&quot;)
+&nbsp;    @Override
+&nbsp;    public AppRequest addHeaders(@NotNull HashMap headers) {
+<b class="fc">&nbsp;        this.headers.putAll(headers);</b>
+<b class="fc">&nbsp;        return this;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-27 19:56</div>
+</div>
+</body>
+</html>

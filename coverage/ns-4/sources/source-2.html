@@ -1,0 +1,152 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > HostingService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.contentstack.sdk.marketplace.apps.hosting</a>
+</div>
+
+<h1>Coverage Summary for Class: HostingService (com.contentstack.sdk.marketplace.apps.hosting)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">HostingService</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.contentstack.sdk.marketplace.apps.hosting;
+&nbsp;
+&nbsp;import okhttp3.ResponseBody;
+&nbsp;import org.json.simple.JSONObject;
+&nbsp;import retrofit2.Call;
+&nbsp;import retrofit2.http.*;
+&nbsp;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;public interface HostingService {
+&nbsp;
+&nbsp;    @PATCH(&quot;manifests/{appId}/hosting/disable&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; toggleDisableHosting(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;appId&quot;) String appId);
+&nbsp;
+&nbsp;    @PATCH(&quot;manifests/{appId}/hosting/enable&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; toggleEnableHosting(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;appId&quot;) String appId);
+&nbsp;
+&nbsp;    @POST(&quot; /manifests/{uid}/hosting/signedUploadUrl&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; signedUploadUrl(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;uid&quot;) String uid);
+&nbsp;
+&nbsp;    @POST(&quot;/{url}&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; uploadFile(
+&nbsp;            @Path(value = &quot;url&quot;, encoded = true) String url,
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @QueryMap Map&lt;String, Object&gt; param);
+&nbsp;
+&nbsp;    @POST(&quot;manifests/{appId}/hosting/deployments&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; createDeployments(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;appId&quot;) String appId,
+&nbsp;            @Body JSONObject body,
+&nbsp;            @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;    @POST(&quot;manifests/{appId}/hosting/signedDownloadUrl&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; createSignedDownloadUrl(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;appId&quot;) String appId,
+&nbsp;            @QueryMap Map&lt;String, Object&gt; params);
+&nbsp;
+&nbsp;    @GET(&quot;manifests/{uid}/hosting&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; getHosting(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;uid&quot;) String uid,
+&nbsp;            @QueryMap Map&lt;String, Object&gt; params);
+&nbsp;
+&nbsp;    @GET(&quot;manifests/{appId}/hosting/deployments&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; findDeployments(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;appId&quot;) String appId,
+&nbsp;            @QueryMap Map&lt;String, Object&gt; params);
+&nbsp;
+&nbsp;    @GET(&quot;manifests/{appId}/hosting/deployments/{deploymentId}&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; fetchDeployment(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;appId&quot;) String appId,
+&nbsp;            @Path(&quot;deploymentId&quot;) String deploymentId,
+&nbsp;            @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;    @GET(&quot;manifests/{appId}/hosting/latestLiveDeployment&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; fetchLatestLiveDeployment(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;appId&quot;) String appId,
+&nbsp;            @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;    @GET(&quot;manifests/{appId}/hosting/deployments/{deploymentId}/logs&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; findDeploymentLogs(
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @Path(&quot;appId&quot;) String appId,
+&nbsp;            @Path(&quot;deploymentId&quot;) String deploymentId,
+&nbsp;            @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;    @GET(&quot;{url}&quot;)
+&nbsp;    Call&lt;ResponseBody&gt; downloadFile(
+&nbsp;            @Path(value = &quot;url&quot;, encoded = true) String url,
+&nbsp;            @HeaderMap Map&lt;String, String&gt; headers,
+&nbsp;            @QueryMap Map&lt;String, Object&gt; queryParams);
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-07-27 19:56</div>
+</div>
+</body>
+</html>
