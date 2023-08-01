@@ -14,7 +14,6 @@ public class MarketplaceTest {
 
     static Marketplace marketplace;
     static final String ORG_ID = TestClient.ORGANIZATION_UID;
-
     @BeforeAll
     static void setUp() {
         marketplace = new Marketplace(ORG_ID);
