@@ -1,4 +1,4 @@
-# Marketplace SDK ReadMe
+# Contentstack Marketplace SDK 
 
 The `Marketplace` class provides a software development kit (SDK) to interact with the Contentstack Marketplace API. It facilitates the management of apps, authorizations, and installations within your Contentstack organization.
 
@@ -95,8 +95,18 @@ AppRequest appRequest = marketplace.request();
 
 **Note:** Replace `'YOUR_ORG_ID'`, `'APP_UID'`, and `'INSTALLATION_ID'` with actual values from your Contentstack organization.
 
-## License
+### The MIT License (MIT)
 
-This project is distributed under the terms of the [LICENSE](LICENSE) file.
+Copyright © 2012-2023 [Contentstack](https://www.contentstack.com/). All Rights Reserved
 
-**Note:** The `Marketplace` class is an SDK that allows you to interact with the Contentstack Marketplace API using Java code. Please refer to the official Contentstack documentation for the Marketplace API to understand the various endpoints and functionalities available for apps, authorizations, and installations.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
