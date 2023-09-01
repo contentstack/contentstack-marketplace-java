@@ -1,35 +1,33 @@
-# Contentstack Marketplace SDK 
+# Contentstack Marketplace SDK Using Java
 
-The `Marketplace` class provides a software development kit (SDK) to interact with the Contentstack Marketplace API. It facilitates the management of apps, authorizations, and installations within your Contentstack organization.
+The **Marketplace** class provides a software development kit (SDK) to interact with the Contentstack Marketplace API. It facilitates the management of apps, authorizations, and installations within your Contentstack organization.
 
 ## Prerequisites
 
-Before using the `Marketplace` SDK, ensure the following:
+Before using the **Marketplace** SDK, ensure the following:
 
-1. Java JDK v1.8 or above should be installed in your machine
+1. Java JDK 1.8 or above should be installed on your machine.
 2. You have a valid Contentstack account with access to the Contentstack Marketplace.
-2. You have obtained the necessary credentials, including the organization UID, to interact with the Marketplace API.
+3. You have obtained the necessary credentials, including the organization UID, to interact with the Marketplace API.
 
 ## Installation
 
-To use the `Marketplace` SDK in your Java project, follow these steps:
+To use the Marketplace SDK in your Java project, follow these steps:
 
-1. Download the `contentstack-java` SDK and its dependencies from the Contentstack Maven repository. Add the following dependencies to your project's `pom.xml` file:
+1. Download the contentstack-java SDK and its dependencies from the Contentstack Maven repository. Add the following dependencies to your project's pom.xml file:
 
 ```xml
-
+<!-- https://mvnrepository.com/artifact/com.contentstack.sdk/marketplace -->
 <dependencies>
-    <!-- Contentstack SDK -->
     <dependency>
         <groupId>com.contentstack.sdk</groupId>
         <artifactId>marketplace</artifactId>
-        <!-- Replace 'x.x.x' with the latest version available -->
-        <version>x.x.x</version>
+        <version>x.x.x</version> <!-- Replace 'x.x.x' with the latest version available -->
     </dependency>
 </dependencies>
 ```
 
-2. Save the `pom.xml` file.
+2. Save the pom.xml file.
 
 3. Ensure you have internet connectivity to download the SDK and its dependencies from the central Maven repository.
 
@@ -47,7 +45,7 @@ import org.jetbrains.annotations.NotNull;
 import retrofit2.Retrofit;
 ```
 
-2. Initialize the `Marketplace` class with your organization UID:
+2. Initialize the Marketplace class with your organization UID:
 
 ```java
 // Replace 'YOUR_ORG_ID' with your Contentstack organization UID
@@ -55,9 +53,9 @@ String organizationUid = "YOUR_ORG_ID";
 Marketplace marketplace = new Marketplace(organizationUid);
 ```
 
-3. Use the various methods available in the `Marketplace` class to interact with the Marketplace API:
+3. Use the various methods available in the Marketplace class to interact with the Marketplace API:
 
-### Retrieve an instance of the `App` class:
+### Retrieve an instance of the App class:
 
 ```java
 // Get an instance of the App class
@@ -68,14 +66,14 @@ String appUid = "APP_UID";
 App specificApp = marketplace.app(appUid);
 ```
 
-### Retrieve an instance of the `Auth` class:
+### Retrieve an instance of the Auth class:
 
 ```java
 // Get an instance of the Auth class
 Auth auth = marketplace.authorizations();
 ```
 
-### Retrieve an instance of the `Installation` class:
+### Retrieve an instance of the Installation class:
 
 ```java
 // Get an instance of the Installation class
@@ -86,27 +84,22 @@ String installationId = "INSTALLATION_ID";
 Installation specificInstallation = marketplace.installation(installationId);
 ```
 
-### Create an instance of the `AppRequest` class:
+### Create an instance of the AppRequest class:
 
 ```java
 // Get an instance of the AppRequest class
 AppRequest appRequest = marketplace.request();
 ```
 
-**Note:** Replace `'YOUR_ORG_ID'`, `'APP_UID'`, and `'INSTALLATION_ID'` with actual values from your Contentstack organization.
+**Note:** Replace **YOUR_ORG_ID**, **APP_UID**, and **INSTALLATION_ID** with actual values from your Contentstack organization.
 
-### The MIT License (MIT)
+## License
+
+The MIT License (MIT)
 
 Copyright © 2012-2023 [Contentstack](https://www.contentstack.com/). All Rights Reserved
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
-documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit
-persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
-Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
-TO THE
-WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
