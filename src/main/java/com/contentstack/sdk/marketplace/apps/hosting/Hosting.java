@@ -10,18 +10,31 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * The type Hosting.
+ */
 public class Hosting implements BaseImplementation<Hosting> {
     private final HostingService service;
+    /**
+     * The Headers.
+     */
     protected HashMap<String, String> headers;
+    /**
+     * The Params.
+     */
     protected HashMap<String, Object> params;
+    /**
+     * The App id.
+     */
     protected final String appId;
 
-    // Instantiates a new Hosting
-    // The `public Hosting(Retrofit client, String organizationId, @NotNull String
-    // appId)` constructor
-    // is used to initialize the `Hosting` object. It takes three parameters:
-    // `client`,
-    // `organizationId`, and `appId`.
+    /**
+     * Instantiates a new Hosting.
+     *
+     * @param client         the client
+     * @param organizationId the organization id
+     * @param appId          the app id
+     */
     public Hosting(Retrofit client, String organizationId, @NotNull String appId) {
         this.headers = new HashMap<>();
         this.params = new HashMap<>();
@@ -36,8 +49,16 @@ public class Hosting implements BaseImplementation<Hosting> {
      * The function fetches hosting data using the provided headers, app ID, and
      * parameters. It Gets hosting configuration of your App Manifest
      *
-     * @return The method is returning a Call object with a generic type of
-     * ResponseBody.
+     * @return The method is returning a Call object with a generic type of ResponseBody.
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * Call response = hosting.fetchHosting().execute();
+     * </code>
      */
     public Call<ResponseBody> fetchHosting() {
         return this.service.getHosting(this.headers, this.appId, this.params);
@@ -48,8 +69,17 @@ public class Hosting implements BaseImplementation<Hosting> {
      * The function returns a signed upload URL by making a request to a service
      * with the provided headers and app ID.
      *
-     * @return The method is returning a Call object with a generic type of
-     * ResponseBody.
+     * @return The method is returning a Call object with a generic type of ResponseBody.
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * Call response = hosting.createSignedUploadUrl().execute();
+     * </code>
      */
     public Call<ResponseBody> createSignedUploadUrl() {
         return this.service.signedUploadUrl(this.headers, this.appId);
@@ -61,6 +91,16 @@ public class Hosting implements BaseImplementation<Hosting> {
      *
      * @param url The URL where the file will be uploaded to.
      * @return The method is returning a Call object with a ResponseBody type.
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * Call response = hosting.uploadFile("url").execute();
+     * </code>
      */
     public Call<ResponseBody> uploadFile(@NotNull String url) {
         Objects.requireNonNull(url, "Url is required to upload the file");
@@ -70,10 +110,19 @@ public class Hosting implements BaseImplementation<Hosting> {
     /**
      * The function creates a deployment using the provided JSON body.
      *
-     * @param body The `body` parameter is a `JSONObject` that contains the data
-     *             needed to create a
-     *             deployment.
+     * @param body The `body` parameter is a `JSONObject` that contains the data needed to create a deployment.
      * @return The method is returning a Call object with a ResponseBody type.
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * JSONObject body = new JSONObject();
+     * Call response = hosting.createDeployment(body).execute();
+     * </code>
      */
     public Call<ResponseBody> createDeployment(@NotNull JSONObject body) {
         return this.service.createDeployments(this.headers, this.appId, body, this.params);
@@ -84,8 +133,17 @@ public class Hosting implements BaseImplementation<Hosting> {
      * to find deployments
      * using the provided headers, app ID, and parameters.
      *
-     * @return The method is returning a Call object with a generic type of
-     * ResponseBody.
+     * @return The method is returning a Call object with a generic type of ResponseBody.
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * JSONObject body = new JSONObject();
+     * Call response = hosting.findDeployments().execute();
+     * </code>
      */
     public Call<ResponseBody> findDeployments() {
         return this.service.findDeployments(this.headers, this.appId, this.params);
@@ -94,10 +152,18 @@ public class Hosting implements BaseImplementation<Hosting> {
     /**
      * The function fetches a deployment using the provided deployment ID.
      *
-     * @param deploymentId The deploymentId is a unique identifier for a deployment.
-     *                     It is used to retrieve
-     *                     information about a specific deployment.
+     * @param deploymentId The deploymentId is a unique identifier for a deployment.                     It is used to retrieve                     information about a specific deployment.
      * @return instance call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * JSONObject body = new JSONObject();
+     * Call response = hosting.fetchDeployment("deploymentId").execute();
+     * </code>
      */
     public Call<ResponseBody> fetchDeployment(@NotNull String deploymentId) {
         Objects.requireNonNull(this.appId, "App uid is required");
@@ -108,8 +174,18 @@ public class Hosting implements BaseImplementation<Hosting> {
     /**
      * The function returns the latest live deployment by making an API call.
      *
-     * @return The method is returning a `Call` object with a generic type of
-     * `ResponseBody`.
+     * @return The method is returning a `Call` object with a generic type of `ResponseBody`.
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * JSONObject body = new JSONObject();
+     * Call response = hosting.getLatestLiveDeployment().execute();
+     * </code>
      */
     public Call<ResponseBody> getLatestLiveDeployment() {
         return this.service.fetchLatestLiveDeployment(this.headers, this.appId, this.params);
@@ -120,12 +196,20 @@ public class Hosting implements BaseImplementation<Hosting> {
      * deployment logs based on
      * the provided deployment ID.
      *
-     * @param deploymentId The deployment ID is a unique identifier for a specific
-     *                     deployment. It is used
-     *                     to identify and retrieve the logs for a particular
-     *                     deployment.
-     * @return The method is returning a `Call` object with a generic type of
-     * `ResponseBody`.
+     * @param deploymentId The deployment ID is a unique identifier for a specific deployment.
+     *                     It is used to identify and retrieve the logs for a particular deployment.
+     * @return The method is returning a `Call` object with a generic type of `ResponseBody`.
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * JSONObject body = new JSONObject();
+     * Call response = hosting.findDeploymentLogs("deploymentId").execute();
+     * </code>
      */
     public Call<ResponseBody> findDeploymentLogs(@NotNull String deploymentId) {
         return this.service.findDeploymentLogs(this.headers, this.appId, deploymentId, this.params);
@@ -135,8 +219,19 @@ public class Hosting implements BaseImplementation<Hosting> {
      * The function creates a signed download URL using the provided headers, app
      * ID, and parameters.
      *
-     * @return The method is returning a `Call` object with a generic type of
-     * `ResponseBody`.
+     * @return The method is returning a `Call` object with a generic type of `ResponseBody`.
+     *
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * JSONObject body = new JSONObject();
+     * Call response = hosting.createSignedDownloadUrl().execute();
+     * </code>
      */
     public Call<ResponseBody> createSignedDownloadUrl() {
         return this.service.createSignedDownloadUrl(this.headers, this.appId, this.params);
@@ -149,6 +244,17 @@ public class Hosting implements BaseImplementation<Hosting> {
      *
      * @param url The URL of the file that you want to download.
      * @return instance call
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * JSONObject body = new JSONObject();
+     * Call response = hosting.downloadFile("url").execute();
+     * </code>
      */
     public Call<ResponseBody> downloadFile(@NotNull String url) {
         return this.service.downloadFile(url, this.headers, this.params);
@@ -170,6 +276,18 @@ public class Hosting implements BaseImplementation<Hosting> {
      * Stack Admins
      *
      * @return The method is returning a Call object with a ResponseBody type.
+     *
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * JSONObject body = new JSONObject();
+     * Call response = hosting.enableToggleHosting().execute();
+     * </code>
      */
     public Call<ResponseBody> enableToggleHosting() {
         Objects.requireNonNull(this.appId, "App uid is required");
@@ -192,6 +310,18 @@ public class Hosting implements BaseImplementation<Hosting> {
      * Stack Admins
      *
      * @return The method is returning a Call object with a ResponseBody type.
+     *
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organisationId")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * JSONObject body = new JSONObject();
+     * Call response = hosting.disableToggleHosting().execute();
+     * </code>
      */
     public Call<ResponseBody> disableToggleHosting() {
         return this.service.toggleDisableHosting(this.headers, this.appId);
@@ -205,6 +335,16 @@ public class Hosting implements BaseImplementation<Hosting> {
      * @param value the value of the header to be added
      * @return a new {@link Hosting} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
+     *
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organisationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Hosting hosting = marketplace.app().hosting();
+     *                              hosting.addParam("key", "value");
+     *                              </code>
      */
     @Override
     public Hosting addParam(@NotNull String key, @NotNull Object value) {
@@ -220,6 +360,15 @@ public class Hosting implements BaseImplementation<Hosting> {
      * @param value the value of the header to be added
      * @return a new {@link Hosting} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organisationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Hosting hosting = marketplace.app().hosting();
+     *                              hosting.addParam("key", "value");
+     *                              </code>
      */
     @Override
     public Hosting addHeader(@NotNull String key, @NotNull String value) {
@@ -234,6 +383,17 @@ public class Hosting implements BaseImplementation<Hosting> {
      * @param params a {@link HashMap} containing the parameters to be added
      * @return a new {@link Hosting} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organisationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Hosting hosting = marketplace.app().hosting();
+     *                              HashMap params = new HashMap();
+     *                              hosting.addParams(params);
+     *                              </code>
      */
     @Override
     public Hosting addParams(@NotNull HashMap<String, Object> params) {
@@ -248,6 +408,17 @@ public class Hosting implements BaseImplementation<Hosting> {
      * @param headers a {@link HashMap} containing the parameters to be added
      * @return a new {@link Hosting} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organisationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Hosting hosting = marketplace.app().hosting();
+     *                              HashMap params = new HashMap();
+     *                              hosting.addHeaders(params);
+     *                              </code>
      */
     @Override
     public Hosting addHeaders(@NotNull HashMap<String, String> headers) {

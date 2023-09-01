@@ -4,6 +4,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
+/**
+ * The type Client.
+ */
 public class Client {
     private static Retrofit retrofit;
 

@@ -9,22 +9,28 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * The type Location.
+ */
 public class Location implements BaseImplementation<Location> {
 
     private final String installationId;
+    /**
+     * The Headers.
+     */
     protected HashMap<String, String> headers;
     private final LocationService service;
+    /**
+     * The Params.
+     */
     protected HashMap<String, Object> params;
 
     /**
      * Constructs a new {@link Location} object with the specified parameters.
      *
-     * @param client          a {@link Retrofit} object representing the client used
-     *                        to create the {@link LocationService} object
-     * @param organizationUid a non-null {@link String} representing the
-     *                        organization UID
-     * @param installationId  a non-null {@link String} representing the
-     *                        installation ID
+     * @param client          a {@link Retrofit} object representing the client used                        to create the {@link LocationService} object
+     * @param organizationUid a non-null {@link String} representing the                        organization UID
+     * @param installationId  a non-null {@link String} representing the                        installation ID
      * @throws NullPointerException if any of the arguments are null
      */
     public Location(Retrofit client, @NotNull String organizationUid, @NotNull String installationId) {
@@ -35,6 +41,11 @@ public class Location implements BaseImplementation<Location> {
         this.service = client.create(LocationService.class);
     }
 
+    /**
+     * Fetch configuration location call.
+     *
+     * @return the call
+     */
     Call<ResponseBody> fetchConfigurationLocation() {
         Objects.requireNonNull(this.installationId, "Installation Id is required");
         return this.service.getConfigurationLocation(this.headers, this.installationId, this.params);

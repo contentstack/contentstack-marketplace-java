@@ -10,12 +10,21 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The type App request.
+ */
 public class AppRequest implements BaseImplementation<AppRequest> {
 
     private final RequestService service;
     private final Map<String, String> headers;
     private final Map<String, Object> params;
 
+    /**
+     * Instantiates a new App request.
+     *
+     * @param client the client
+     * @param orgId  the org id
+     */
     public AppRequest(@NotNull Retrofit client, @NotNull String orgId) {
         this.service = client.create(RequestService.class);
         this.headers = new HashMap<>();
@@ -23,22 +32,44 @@ public class AppRequest implements BaseImplementation<AppRequest> {
         this.params = new HashMap<>();
     }
 
-    // Network Call to create a resource using JSON data.
+    /**
+     * Create call.
+     *
+     * @param data the data
+     * @return the call
+     */
+// Network Call to create a resource using JSON data.
     Call<ResponseBody> create(JSONObject data) {
         return this.service.create(this.headers, data);
     }
 
-    // Network Call to list requests with headers and query parameters.
+    /**
+     * Find call.
+     *
+     * @return the call
+     */
+// Network Call to list requests with headers and query parameters.
     Call<ResponseBody> find() {
         return this.service.listRequests(this.headers, this.params);
     }
 
-    // Network Call to list requested stacks with headers and query parameters.
+    /**
+     * Find requested stacks call.
+     *
+     * @return the call
+     */
+// Network Call to list requested stacks with headers and query parameters.
     Call<ResponseBody> findRequestedStacks() {
         return this.service.listRequestedStacks(this.headers, this.params);
     }
 
-    // Network Call to delete a specific request identified by requestId.
+    /**
+     * Delete call.
+     *
+     * @param requestId the request id
+     * @return the call
+     */
+// Network Call to delete a specific request identified by requestId.
     Call<ResponseBody> delete(String requestId) {
         return this.service.deleteRequest(this.headers, requestId);
     }
