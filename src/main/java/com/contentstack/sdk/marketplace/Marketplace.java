@@ -25,7 +25,6 @@ public class Marketplace {
             host = region.name().toLowerCase() + "-" + host;
         }
         this.host = host.isEmpty() ? DEFAULT_HOST : host;
-        //String endpoint = "https://" + this.host;
         this.client = Client.getInstance(this.host);
     }
 
