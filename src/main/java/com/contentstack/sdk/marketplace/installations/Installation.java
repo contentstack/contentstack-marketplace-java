@@ -16,15 +16,31 @@ import java.util.HashMap;
  */
 public class Installation implements BaseImplementation<Installation> {
 
+    /**
+     * The Missing org id.
+     */
     public final String MISSING_ORG_ID = "organization uid is required";
     private String installationId;
     private String organisationId;
     private InstallationService service;
+    /**
+     * The Headers.
+     */
     protected HashMap<String, String> headers;
+    /**
+     * The Params.
+     */
     protected HashMap<String, Object> params;
     private Retrofit client;
 
-    // The `public Installation(Retrofit client, @NotNull String organisationId,
+    /**
+     * Instantiates a new Installation.
+     *
+     * @param client         the client
+     * @param organisationId the organisation id
+     * @param installationId the installation id
+     */
+// The `public Installation(Retrofit client, @NotNull String organisationId,
     // @NotNull String
     // installationId)` is a constructor for the `Installation` class. It takes
     // three parameters: `client`,
@@ -38,9 +54,7 @@ public class Installation implements BaseImplementation<Installation> {
      * The function checks if the organisationId is empty and throws a
      * NullPointerException if it is.
      *
-     * @param organisationId The parameter `organisationId` is a string that
-     *                       represents the ID of an
-     *                       organization.
+     * @param organisationId The parameter `organisationId` is a string that                       represents the ID of an                       organization.
      */
     protected void checkOrganisationId(String organisationId) {
         if (organisationId.isEmpty()) {
@@ -51,9 +65,7 @@ public class Installation implements BaseImplementation<Installation> {
     /**
      * The function validates if the installationId is not null or empty.
      *
-     * @param installationId The installationId parameter is a string that
-     *                       represents the unique identifier
-     *                       for an installation.
+     * @param installationId The installationId parameter is a string that                       represents the unique identifier                       for an installation.
      */
     protected void validateInstallationId(String installationId) {
         if (installationId == null || installationId.isEmpty()) {
@@ -61,7 +73,13 @@ public class Installation implements BaseImplementation<Installation> {
         }
     }
 
-    // The `public Installation(@NotNull Retrofit client, @NotNull String
+    /**
+     * Instantiates a new Installation.
+     *
+     * @param client         the client
+     * @param organisationId the organisation id
+     */
+// The `public Installation(@NotNull Retrofit client, @NotNull String
     // organisationId)` is a constructor
     // for the `Installation` class. It takes two parameters: `client` and
     // `organisationId`.
@@ -98,13 +116,17 @@ public class Installation implements BaseImplementation<Installation> {
     /**
      * The function returns a list of installed apps by making a network call.
      *
-     * @return The method is returning a `Call` object with a generic type of
-     * `ResponseBody`.
+     * @return The method is returning a `Call` object with a generic type of `ResponseBody`.
      */
     Call<ResponseBody> findInstalledApps() {
         return this.service.listInstalledApps(this.headers, this.params);
     }
 
+    /**
+     * Find installations call.
+     *
+     * @return the call
+     */
     Call<ResponseBody> findInstallations() {
         return this.service.listInstallations(this.headers, this.params);
     }
@@ -113,8 +135,7 @@ public class Installation implements BaseImplementation<Installation> {
      * The function fetches an installation by validating the installation ID and
      * making a network request.
      *
-     * @return The method `fetchInstallation()` is returning a `Call<ResponseBody>`
-     * object.
+     * @return The method `fetchInstallation()` is returning a `Call<ResponseBody>` object.
      */
     Call<ResponseBody> fetchInstallation() {
         validateInstallationId(this.installationId);
@@ -137,8 +158,7 @@ public class Installation implements BaseImplementation<Installation> {
      * The function updates an installation with a given installation ID and returns
      * the response body.
      *
-     * @param body A JSONObject containing the data to be updated for the
-     *             installation.
+     * @param body A JSONObject containing the data to be updated for the             installation.
      * @return The method is returning a Call object with a ResponseBody type.
      */
     Call<ResponseBody> updateInstallation(JSONObject body) {
@@ -149,8 +169,7 @@ public class Installation implements BaseImplementation<Installation> {
     /**
      * The function returns a list of installed users by making a network call.
      *
-     * @return The method is returning a `Call` object with a generic type of
-     * `ResponseBody`.
+     * @return The method is returning a `Call` object with a generic type of `ResponseBody`.
      */
     Call<ResponseBody> findInstalledUsers() {
         return this.service.listInstalledUsers(this.headers, this.params);
@@ -159,8 +178,7 @@ public class Installation implements BaseImplementation<Installation> {
     /**
      * The function returns a list of installed stacks by making a network call.
      *
-     * @return The method is returning a `Call` object with a generic type of
-     * `ResponseBody`.
+     * @return The method is returning a `Call` object with a generic type of `ResponseBody`.
      */
     Call<ResponseBody> findInstalledStacks() {
         return this.service.listInstalledStacks(this.headers, this.params);
@@ -183,8 +201,7 @@ public class Installation implements BaseImplementation<Installation> {
      * and making a network
      * request.
      *
-     * @return The method is returning a Call object with a generic type of
-     * ResponseBody.
+     * @return The method is returning a Call object with a generic type of ResponseBody.
      */
     Call<ResponseBody> fetchAppConfiguration() {
         validateInstallationId(this.installationId);
@@ -196,8 +213,7 @@ public class Installation implements BaseImplementation<Installation> {
      * with the installation ID
      * and parameters.
      *
-     * @return The method is returning a Call object with a generic type of
-     * ResponseBody.
+     * @return The method is returning a Call object with a generic type of ResponseBody.
      */
     Call<ResponseBody> fetchServerConfiguration() {
         validateInstallationId(this.installationId);
@@ -233,8 +249,7 @@ public class Installation implements BaseImplementation<Installation> {
      * and making a request to
      * the service.
      *
-     * @return The method is returning a `Call` object with a generic type of
-     * `ResponseBody`.
+     * @return The method is returning a `Call` object with a generic type of `ResponseBody`.
      */
     Call<ResponseBody> createInstallationToken() {
         validateInstallationId(this.installationId);

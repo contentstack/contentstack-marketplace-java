@@ -9,15 +9,35 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * The type Webhook.
+ */
 public class Webhook implements BaseImplementation<Webhook> {
 
     private final String installationId;
+    /**
+     * The Headers.
+     */
     protected HashMap<String, String> headers;
     private final WebhookService service;
+    /**
+     * The Params.
+     */
     protected HashMap<String, Object> params;
+    /**
+     * The Webhook id.
+     */
     protected String webhookId;
 
-    // The `Webhook` constructor is initializing the `Webhook` object with the
+    /**
+     * Instantiates a new Webhook.
+     *
+     * @param client          the client
+     * @param organizationUid the organization uid
+     * @param webhookId       the webhook id
+     * @param installationId  the installation id
+     */
+// The `Webhook` constructor is initializing the `Webhook` object with the
     // necessary parameters.
     public Webhook(Retrofit client, @NotNull String organizationUid, @NotNull String webhookId,
                    @NotNull String installationId) {
@@ -47,7 +67,7 @@ public class Webhook implements BaseImplementation<Webhook> {
      * <li>(Optional) skip : Int : Number of records to skip</li>
      * </ul>
      *
-     * @return Call
+     * @return Call call
      */
     public Call<ResponseBody> findExecutionLogs() {
         Objects.requireNonNull(this.installationId, "installation uid is required");
@@ -57,10 +77,7 @@ public class Webhook implements BaseImplementation<Webhook> {
     /**
      * The function fetches execution logs for a given execution ID.
      *
-     * @param executionId The executionId parameter is a unique identifier for a
-     *                    specific execution. It is
-     *                    used to fetch the execution logs for that particular
-     *                    execution.
+     * @param executionId The executionId parameter is a unique identifier for a                    specific execution. It is                    used to fetch the execution logs for that particular                    execution.
      * @return instance call
      */
     public Call<ResponseBody> fetchExecutionLogs(String executionId) {
@@ -71,10 +88,7 @@ public class Webhook implements BaseImplementation<Webhook> {
     /**
      * The function retries the execution of a webhook with the given execution ID.
      *
-     * @param executionId The executionId parameter is a string that represents the
-     *                    unique identifier of an
-     *                    execution. It is used to identify a specific execution
-     *                    that needs to be retried.
+     * @param executionId The executionId parameter is a string that represents the                    unique identifier of an                    execution. It is used to identify a specific execution                    that needs to be retried.
      * @return instance call.
      */
     public Call<ResponseBody> retryExecution(@NotNull String executionId) {

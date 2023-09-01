@@ -9,11 +9,26 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * The type Auth.
+ */
 public class Auth implements BaseImplementation<Auth> {
     private final AuthService service;
+    /**
+     * The Headers.
+     */
     protected HashMap<String, String> headers;
+    /**
+     * The Params.
+     */
     protected HashMap<String, Object> params;
 
+    /**
+     * Instantiates a new Auth.
+     *
+     * @param clientInstance  the client instance
+     * @param organizationUid the organization uid
+     */
     public Auth(Retrofit clientInstance, String organizationUid) {
         this.headers = new HashMap<>();
         this.params = new HashMap<>();
@@ -40,6 +55,16 @@ public class Auth implements BaseImplementation<Auth> {
      * @param value the value of the header to be added
      * @return a new {@link Auth} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
+     *
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              Auth authorizations = marketplace.authorizations();
+     *                              authorizations.addParam("param1", "value1");
+     *                              </code>
      */
     public Auth addParam(@NotNull String key, @NotNull Object value) {
         this.params.put(key, value);
@@ -54,6 +79,15 @@ public class Auth implements BaseImplementation<Auth> {
      * @param value the value of the header to be added
      * @return a new {@link Auth} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              Auth authorizations = marketplace.authorizations();
+     *                              authorizations.addHeader("key", "value");
+     *                              </code>
      */
     public Auth addHeader(@NotNull String key, @NotNull String value) {
         this.headers.put(key, value);
@@ -67,6 +101,16 @@ public class Auth implements BaseImplementation<Auth> {
      * @param params a {@link HashMap} containing the parameters to be added
      * @return a new {@link Auth} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              Auth authorizations = marketplace.authorizations();
+     *                              HashMap params = new HashMap();
+     *                              authorizations.addParam(params);
+     *                              </code>
      */
     public Auth addParams(@NotNull HashMap<String, Object> params) {
         this.params.putAll(params);
@@ -80,6 +124,17 @@ public class Auth implements BaseImplementation<Auth> {
      * @param headers a {@link HashMap} containing the parameters to be added
      * @return a new {@link Auth} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              Auth authorizations = marketplace.authorizations();
+     *                              HashMap params = new HashMap();
+     *                              authorizations.addHeaders(params);
+     *                              </code>
      */
     public Auth addHeaders(@NotNull HashMap<String, String> headers) {
         this.headers.putAll(headers);

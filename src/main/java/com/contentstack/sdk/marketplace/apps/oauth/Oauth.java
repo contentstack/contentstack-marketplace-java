@@ -10,16 +10,39 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * The type Oauth.
+ */
 public class Oauth implements BaseImplementation<Oauth> {
 
     private final OauthService service;
+    /**
+     * The Headers.
+     */
     protected HashMap<String, String> headers;
+    /**
+     * The Params.
+     */
     protected HashMap<String, Object> params;
+    /**
+     * The App id.
+     */
     protected String appId;
 
-    // The `public Oauth(Retrofit client, String organizationId)` constructor is
-    // initializing the `Oauth`
-    // object with the provided `Retrofit` client and organization ID.
+    /**
+     * Instantiates a new Oauth.
+     *
+     * @param client         the client
+     * @param organizationId the organization id
+     *                       <p>
+     *                       <b>Example</b>
+     *                       <p>
+     *                       <code>
+     *                       Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                       .host("api.contentstack.io").build();
+     *                       Oauth oauth = marketplace.app().oauth();
+     *                       </code>
+     */
     public Oauth(Retrofit client, String organizationId) {
         this.headers = new HashMap<>();
         this.params = new HashMap<>();
@@ -27,10 +50,23 @@ public class Oauth implements BaseImplementation<Oauth> {
         this.service = client.create(OauthService.class);
     }
 
-    // The `public Oauth(Retrofit client, String organizationId, @NotNull String
-    // appId)` constructor is
-    // initializing the `Oauth` object with the provided `Retrofit` client,
-    // organization ID, and app ID.
+    /**
+     * Instantiates a new Oauth.
+     *
+     * @param client         the client
+     * @param organizationId the organization id
+     * @param appId          the app id
+     *                       <p>
+     *                       <b>Example</b>
+     *                       <p>
+     *                       <code>
+     *                       Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                       .host("api.contentstack.io").build();
+     *                       Oauth oauth = marketplace.app().oauth();
+     *                       </code>
+     */
+
+
     public Oauth(Retrofit client, String organizationId, @NotNull String appId) {
         this.headers = new HashMap<>();
         this.params = new HashMap<>();
@@ -44,10 +80,18 @@ public class Oauth implements BaseImplementation<Oauth> {
     /**
      * The function fetches the OAuth configuration for a given app ID.
      *
-     * @param appId The `appId` parameter is a string that represents the unique
-     *              identifier of an application.
-     * @return The method is returning a Call object with a generic type of
-     * ResponseBody.
+     * @param appId The `appId` parameter is a string that represents the unique identifier of an application.
+     * @return The method is returning a Call object with a generic type of ResponseBody.
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * Oauth oauth = marketplace.app().oauth();
+     * Response response = oauth.addHeader("key", "value")
+     * .fetchOauthConfiguration("appId").execute();
+     * </code>
      */
     public Call<ResponseBody> fetchOauthConfiguration(@NotNull String appId) {
         return service.getOauthConfiguration(this.headers, appId);
@@ -60,6 +104,18 @@ public class Oauth implements BaseImplementation<Oauth> {
      *
      * @param body A JSONObject containing the updated OAuth configuration data.
      * @return The method is returning a Call object with a ResponseBody type.
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * Oauth oauth = marketplace.app().oauth();
+     * JSONObject oauthBody = new JSONObject()
+     * Response<ResponseBody> response = oauth.addHeader("key", "value")
+     * .updateOauthConfiguration(oauthBody).execute();
+     * </code>
      */
     Call<ResponseBody> updateOauthConfiguration(JSONObject body) {
         return service.updateOauthConfiguration(this.headers, this.appId, body);
@@ -70,8 +126,17 @@ public class Oauth implements BaseImplementation<Oauth> {
      * request to find scopes
      * using the provided headers.
      *
-     * @return The method is returning a Call object with a generic type of
-     * ResponseBody.
+     * @return The method is returning a Call object with a generic type of ResponseBody.
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * Oauth oauth = marketplace.app().oauth();
+     * Response<ResponseBody> response = oauth.findScopes().execute();
+     * </code>
      */
     Call<ResponseBody> findScopes() {
         return service.findScopes(this.headers);
@@ -85,6 +150,16 @@ public class Oauth implements BaseImplementation<Oauth> {
      * @param value the value of the header to be added
      * @return a new {@link Oauth} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              Oauth oauth = marketplace.app().oauth();
+     *                              JSONObject oauthBody = new JSONObject()
+     *                              oauth.addParam("key", "value");
+     *                              </code>
      */
     @Override
     public Oauth addParam(@NotNull String key, @NotNull Object value) {
@@ -100,6 +175,15 @@ public class Oauth implements BaseImplementation<Oauth> {
      * @param value the value of the header to be added
      * @return a new {@link Oauth} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              Oauth oauth = marketplace.app().oauth();
+     *                              {@link Oauth} oauth.addHeader("key", "value")
+     *                              </code>
      */
     @Override
     public Oauth addHeader(@NotNull String key, @NotNull String value) {
@@ -114,6 +198,16 @@ public class Oauth implements BaseImplementation<Oauth> {
      * @param params a {@link HashMap} containing the parameters to be added
      * @return a new {@link Oauth} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              Oauth oauth = marketplace.app().oauth();
+     *                              HashMap param = new HashMap();
+     *                              Oauth oauth = oauth.addParams(param);
+     *                              </code>
      */
     @Override
     public Oauth addParams(@NotNull HashMap<String, Object> params) {
@@ -128,6 +222,16 @@ public class Oauth implements BaseImplementation<Oauth> {
      * @param headers a {@link HashMap} containing the parameters to be added
      * @return a new {@link Oauth} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              Oauth oauth = marketplace.app().oauth();
+     *                              HashMap param = new HashMap();
+     *                              Oauth oauth = oauth.addHeaders(param)
+     *                              </code>
      */
     @Override
     public Oauth addHeaders(@NotNull HashMap<String, String> headers) {

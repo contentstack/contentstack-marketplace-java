@@ -35,6 +35,16 @@ public class App implements BaseImplementation<App> {
      *
      * @param client          The retrofit client
      * @param organizationUid the organization uid
+     *                        <p>
+     *                        <b>Example</b>
+     *                        <p>
+     *                        <code>
+     *                        Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                        .host("api.contentstack.io").build();
+     *                        App app = marketplace.app("installationId");
+     *                        (or)
+     *                        App app = marketplace.app();
+     *                        </code>
      */
     public App(Retrofit client, @NotNull String organizationUid) {
         this.client = client;
@@ -48,9 +58,19 @@ public class App implements BaseImplementation<App> {
     /**
      * Instantiates a new App/Manifest.
      *
-     * @param client           The retrofit client
-     * @param organizationUid= The uid of the organization
-     * @param uid              The app uid
+     * @param client          The retrofit client
+     * @param organizationUid The uid of the organization
+     * @param uid             The app uid
+     *                        <p>
+     *                        <b>Example</b>
+     *                        <p>
+     *                        <code>
+     *                        Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                        .host("api.contentstack.io").build();
+     *                        App app = marketplace.app("installationId");
+     *                        (or)
+     *                        App app = marketplace.app();
+     *                        </code>
      */
     public App(Retrofit client, @NotNull String organizationUid, @NotNull String uid) {
         this.client = client;
@@ -71,6 +91,14 @@ public class App implements BaseImplementation<App> {
      * @param value the value of the header to be added
      * @return a new {@link App} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              App app = marketplace.app().addParam("key","value");
+     *                              </code>
      */
     @Override
     public App addParam(@NotNull String key, @NotNull Object value) {
@@ -86,6 +114,14 @@ public class App implements BaseImplementation<App> {
      * @param value the value of the header to be added
      * @return a new {@link App} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              App app = marketplace.app().addHeader("key","value");
+     *                              </code>
      */
     @Override
     public App addHeader(@NotNull String key, @NotNull String value) {
@@ -100,6 +136,15 @@ public class App implements BaseImplementation<App> {
      * @param params a {@link HashMap} containing the parameters to be added
      * @return a new {@link App} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              HashMap param = new HashMap();
+     *                              App app = marketplace.app().addParams(param);
+     *                              </code>
      */
     @Override
     public App addParams(@NotNull HashMap<String, Object> params) {
@@ -114,6 +159,15 @@ public class App implements BaseImplementation<App> {
      * @param headers a {@link HashMap} containing the parameters to be added
      * @return a new {@link App} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     *                              .host("api.contentstack.io").build();
+     *                              HashMap param = new HashMap();
+     *                              App app = marketplace.app().addHeaders(param);
+     *                              </code>
      */
     @Override
     public App addHeaders(@NotNull HashMap<String, String> headers) {
@@ -126,6 +180,17 @@ public class App implements BaseImplementation<App> {
      *
      * @param body the body
      * @return the call
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * {@link JSONObject} body = new {@link JSONObject}();
+     * App app = marketplace.app().createInstallation(body);
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> createInstallation(@NotNull JSONObject body) {
         return this.service.createInstallation(this.headers, this.appUid, body, this.params);
@@ -136,6 +201,17 @@ public class App implements BaseImplementation<App> {
      *
      * @param body the body
      * @return the call
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * {@link JSONObject} body = new {@link JSONObject}();
+     * App app = marketplace.app().updateVersion(body);
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> updateVersion(@NotNull JSONObject body) {
         return this.service.updateVersion(this.headers, this.appUid, body, this.params);
@@ -145,6 +221,16 @@ public class App implements BaseImplementation<App> {
      * Find app authorizations call.
      *
      * @return the call
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * App app = marketplace.app().findAppAuthorizations();
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> findAppAuthorizations() {
         return service.findAppAuthorizations(this.headers, this.appUid, this.params);
@@ -155,6 +241,15 @@ public class App implements BaseImplementation<App> {
      *
      * @param authorizationUid the authorization uid
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * App app = marketplace.app().deleteAuthorization("authorizationUid");
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> deleteAuthorization(@NotNull String authorizationUid) {
         return service.deleteAuthorization(this.headers, this.appUid, authorizationUid);
@@ -164,6 +259,15 @@ public class App implements BaseImplementation<App> {
      * Find app installations call.
      *
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * App app = marketplace.app().findAppInstallations();
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> findAppInstallations() {
         return service.listAppInstallations(this.headers, this.appUid, this.params);
@@ -173,6 +277,15 @@ public class App implements BaseImplementation<App> {
      * Find apps call.
      *
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * App app = marketplace.app().findApps();
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> findApps() {
         return service.listApps(this.headers, this.params);
@@ -183,6 +296,16 @@ public class App implements BaseImplementation<App> {
      *
      * @param body the body
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * {@link JSONObject} body = new {@link JSONObject}();
+     * App app = marketplace.app().createApp(body);
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> createApp(@NotNull JSONObject body) {
         return service.createApp(this.headers, this.params, body);
@@ -192,6 +315,15 @@ public class App implements BaseImplementation<App> {
      * Fetch app call.
      *
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * App app = marketplace.app().fetchApp();
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> fetchApp() {
         return service.fetchApp(this.headers, this.appUid, this.params);
@@ -202,6 +334,16 @@ public class App implements BaseImplementation<App> {
      *
      * @param body the body
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * {@link JSONObject} body = new {@link JSONObject}();
+     * App app = marketplace.app().updateApp();
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> updateApp(@NotNull JSONObject body) {
         return service.updateApp(this.headers, this.appUid, body);
@@ -211,6 +353,16 @@ public class App implements BaseImplementation<App> {
      * Delete app call.
      *
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * {@link JSONObject} body = new {@link JSONObject}();
+     * App app = marketplace.app().deleteApp();
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> deleteApp() {
         return service.delete(this.headers, this.appUid);
@@ -220,8 +372,16 @@ public class App implements BaseImplementation<App> {
      * The function returns a call to list app requests with specified headers, app
      * UID, and parameters.
      *
-     * @return The method is returning a Call object with a generic type of
-     * ResponseBody.
+     * @return The method is returning a Call object with a generic type of ResponseBody.
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * App app = marketplace.app().findAppRequests();
+     * Call response = app.execute()
+     * </code>
      */
     public Call<ResponseBody> findAppRequests() {
         return service.listAppRequests(this.headers, this.appUid, this.params);
@@ -231,6 +391,14 @@ public class App implements BaseImplementation<App> {
      * Returns Instance of oauth
      *
      * @return the oauth
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * Oauth oauth = marketplace.app().oauth();
+     * </code>
      */
     public Oauth oauth() {
         String orgId = this.headers.get(ORGANIZATION_UID);
@@ -242,6 +410,14 @@ public class App implements BaseImplementation<App> {
      *
      * @param id the app uid
      * @return the oauth
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * Oauth oauth = marketplace.app().oauth("id");
+     * </code>
      */
     public Oauth oauth(@NotNull String id) {
         String orgId = this.headers.get(ORGANIZATION_UID);
@@ -252,6 +428,14 @@ public class App implements BaseImplementation<App> {
      * Hosting hosting.
      *
      * @return the instance of hosting
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * Hosting hosting = marketplace.app().hosting();
+     * </code>
      */
     public Hosting hosting() {
         String orgId = this.headers.get(ORGANIZATION_UID);
@@ -263,6 +447,14 @@ public class App implements BaseImplementation<App> {
      *
      * @param appId the app id
      * @return the instance of hosting
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * {@link Hosting} hosting = marketplace.app().hosting("appId");
+     * </code>
      */
     public Hosting hosting(@NotNull String appId) {
         String orgId = this.headers.get(ORGANIZATION_UID);
