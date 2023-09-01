@@ -1,20 +1,41 @@
 package com.contentstack.sdk;
 
-import org.jetbrains.annotations.NotNull;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Client {
-    protected static Retrofit retrofit;
-    protected static final String SCHEME = "https://";
-    protected static final String SLASH = "/";
+    private static Retrofit retrofit;
 
-    public static Retrofit getInstance(@NotNull String host) {
-        String BASE_URL = SCHEME + host + SLASH;
+    private Client() {
+        // Private constructor to prevent instantiation
+    }
+
+    /**
+     * Get or create the Retrofit instance for the specified host.
+     *
+     * @param host The host of the API.
+     * @return Retrofit instance.
+     */
+    public static Retrofit getInstance(String host) {
         if (retrofit == null) {
-            retrofit = new Retrofit.Builder().baseUrl(BASE_URL) // Replace with your API base URL
-                    .addConverterFactory(GsonConverterFactory.create()).build();
+            synchronized (Client.class) {
+                if (retrofit == null) {
+                    retrofit = createRetrofitInstance(host);
+                }
+            }
         }
         return retrofit;
     }
+
+    private static Retrofit createRetrofitInstance(String host) {
+        String BASE_URL = "https://" + host + "/";
+        return new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
 }
+

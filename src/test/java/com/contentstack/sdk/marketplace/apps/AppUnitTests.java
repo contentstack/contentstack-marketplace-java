@@ -249,17 +249,24 @@ class AppUnitTests {
 
     @Test
     void testParamsAndHeaders() {
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         map.put("paramKey1", "paramValue1");
         map.put("paramKey2", "paramValue2");
-        app.addParams(map).addHeaders(map);
+
+
+        HashMap<String, Object> mapParam = new HashMap<>();
+        map.put("paramKey1", "paramValue1");
+        map.put("paramKey2", "paramValue2");
+        map.put("paramKey3", "paramValue3");
+
+        app.addParams(mapParam).addHeaders(map);
         Request request = app.addHeader("authtoken", "fake@token").findApps().request();
         Assertions.assertTrue(request.isHttps());
         Assertions.assertEquals("GET", request.method());
-        Assertions.assertEquals(4, request.headers().size());
+        Assertions.assertEquals(5, request.headers().size());
         Assertions.assertEquals("api.contentstack.io", request.url().host());
         Assertions.assertNull(request.body());
-        Assertions.assertEquals("https://api.contentstack.io/manifests?search=paramValue&paramKey2=paramValue2&limit=10&target_type=stack&skip=3&sort=updated_at&paramKey1=paramValue1&order=asc", request.url().toString());
+        Assertions.assertEquals("https://api.contentstack.io/manifests?search=paramValue&limit=10&target_type=stack&skip=3&sort=updated_at&order=asc", request.url().toString());
     }
 
 

@@ -14,7 +14,7 @@ import java.util.HashMap;
 /**
  * The type Installation.
  */
-public class Installation implements BaseImplementation {
+public class Installation implements BaseImplementation<Installation> {
 
     public final String MISSING_ORG_ID = "organization uid is required";
     private String installationId;
@@ -37,7 +37,7 @@ public class Installation implements BaseImplementation {
     /**
      * The function checks if the organisationId is empty and throws a
      * NullPointerException if it is.
-     * 
+     *
      * @param organisationId The parameter `organisationId` is a string that
      *                       represents the ID of an
      *                       organization.
@@ -50,7 +50,7 @@ public class Installation implements BaseImplementation {
 
     /**
      * The function validates if the installationId is not null or empty.
-     * 
+     *
      * @param installationId The installationId parameter is a string that
      *                       represents the unique identifier
      *                       for an installation.
@@ -74,7 +74,7 @@ public class Installation implements BaseImplementation {
      * The function initializes the headers, parameters, installation ID,
      * organization ID, Retrofit client,
      * and service for an installation.
-     * 
+     *
      * @param client         The `client` parameter is an instance of the Retrofit
      *                       class. It is used to make HTTP
      *                       requests to a RESTful API.
@@ -97,9 +97,9 @@ public class Installation implements BaseImplementation {
 
     /**
      * The function returns a list of installed apps by making a network call.
-     * 
+     *
      * @return The method is returning a `Call` object with a generic type of
-     *         `ResponseBody`.
+     * `ResponseBody`.
      */
     Call<ResponseBody> findInstalledApps() {
         return this.service.listInstalledApps(this.headers, this.params);
@@ -112,9 +112,9 @@ public class Installation implements BaseImplementation {
     /**
      * The function fetches an installation by validating the installation ID and
      * making a network request.
-     * 
+     *
      * @return The method `fetchInstallation()` is returning a `Call<ResponseBody>`
-     *         object.
+     * object.
      */
     Call<ResponseBody> fetchInstallation() {
         validateInstallationId(this.installationId);
@@ -125,7 +125,7 @@ public class Installation implements BaseImplementation {
      * The function fetches installation data by validating the installation ID and
      * making a network
      * request.
-     * 
+     *
      * @return The method is returning a `Call<ResponseBody>` object.
      */
     Call<ResponseBody> fetchInstallationData() {
@@ -136,7 +136,7 @@ public class Installation implements BaseImplementation {
     /**
      * The function updates an installation with a given installation ID and returns
      * the response body.
-     * 
+     *
      * @param body A JSONObject containing the data to be updated for the
      *             installation.
      * @return The method is returning a Call object with a ResponseBody type.
@@ -148,9 +148,9 @@ public class Installation implements BaseImplementation {
 
     /**
      * The function returns a list of installed users by making a network call.
-     * 
+     *
      * @return The method is returning a `Call` object with a generic type of
-     *         `ResponseBody`.
+     * `ResponseBody`.
      */
     Call<ResponseBody> findInstalledUsers() {
         return this.service.listInstalledUsers(this.headers, this.params);
@@ -158,9 +158,9 @@ public class Installation implements BaseImplementation {
 
     /**
      * The function returns a list of installed stacks by making a network call.
-     * 
+     *
      * @return The method is returning a `Call` object with a generic type of
-     *         `ResponseBody`.
+     * `ResponseBody`.
      */
     Call<ResponseBody> findInstalledStacks() {
         return this.service.listInstalledStacks(this.headers, this.params);
@@ -170,7 +170,7 @@ public class Installation implements BaseImplementation {
      * The function `uninstall()` validates the installation ID and then calls the
      * `uninstall()` method of
      * a service, returning the response body.
-     * 
+     *
      * @return The method is returning a Call object with a ResponseBody type.
      */
     Call<ResponseBody> uninstall() {
@@ -182,9 +182,9 @@ public class Installation implements BaseImplementation {
      * The function fetches the app configuration by validating the installation ID
      * and making a network
      * request.
-     * 
+     *
      * @return The method is returning a Call object with a generic type of
-     *         ResponseBody.
+     * ResponseBody.
      */
     Call<ResponseBody> fetchAppConfiguration() {
         validateInstallationId(this.installationId);
@@ -195,9 +195,9 @@ public class Installation implements BaseImplementation {
      * The function fetches the server configuration by making a network request
      * with the installation ID
      * and parameters.
-     * 
+     *
      * @return The method is returning a Call object with a generic type of
-     *         ResponseBody.
+     * ResponseBody.
      */
     Call<ResponseBody> fetchServerConfiguration() {
         validateInstallationId(this.installationId);
@@ -208,7 +208,7 @@ public class Installation implements BaseImplementation {
      * The function updates the server configuration with the given JSON object and
      * returns the response
      * body.
-     * 
+     *
      * @param body A JSONObject containing the updated server configuration data.
      * @return The method is returning a Call object with a ResponseBody type.
      */
@@ -219,7 +219,7 @@ public class Installation implements BaseImplementation {
 
     /**
      * The function updates the stack configuration using the provided JSON object.
-     * 
+     *
      * @param body A JSONObject containing the updated stack configuration data.
      * @return The method is returning a Call object with a ResponseBody type.
      */
@@ -232,9 +232,9 @@ public class Installation implements BaseImplementation {
      * The function creates an installation token by validating the installation ID
      * and making a request to
      * the service.
-     * 
+     *
      * @return The method is returning a `Call` object with a generic type of
-     *         `ResponseBody`.
+     * `ResponseBody`.
      */
     Call<ResponseBody> createInstallationToken() {
         validateInstallationId(this.installationId);
@@ -245,7 +245,7 @@ public class Installation implements BaseImplementation {
      * The function returns a new Location object with the specified client,
      * organisationId, and
      * installationId.
-     * 
+     *
      * @return An instance of the Location class.
      */
     public Location location() {
@@ -256,7 +256,7 @@ public class Installation implements BaseImplementation {
     /**
      * The function creates and returns a new Webhook object with the given
      * parameters.
-     * 
+     *
      * @param webhookId A string representing the ID of the webhook.
      * @return An instance of the Webhook class.
      */
@@ -265,70 +265,27 @@ public class Installation implements BaseImplementation {
         return new Webhook(this.client, this.organisationId, webhookId, this.installationId);
     }
 
-    /**
-     * The function adds a parameter to a map and returns the updated map.
-     * 
-     * @param key   The key parameter is a String that represents the key for the
-     *              parameter being added.
-     * @param value The value parameter is of type Object, which means it can accept
-     *              any type of object as
-     *              its value.
-     * @return The method is returning an instance of the `Installation` class.
-     */
 
-    @SuppressWarnings("unchecked")
     @Override
     public Installation addParam(@NotNull String key, @NotNull Object value) {
         this.params.put(key, value);
         return this;
     }
 
-    /**
-     * The function adds a header to a map and returns the updated map.
-     * 
-     * @param key   A string representing the key of the header to be added.
-     * @param value The value parameter is a string that represents the value of the
-     *              header.
-     * @return The method is returning an instance of the `Installation` class.
-     */
-
-    @SuppressWarnings("unchecked")
     @Override
     public Installation addHeader(@NotNull String key, @NotNull String value) {
         this.headers.put(key, value);
         return this;
     }
 
-    /**
-     * Adds the specified parameters to this location and returns the updated
-     * location.
-     *
-     * @param params
-     *               a {@link HashMap} containing the parameters to be added
-     * @return a new {@link Installation} object with the specified parameters added
-     * @throws NullPointerException
-     *                              if the params argument is null
-     */
-    @SuppressWarnings("unchecked")
     @Override
-    public Installation addParams(@NotNull HashMap params) {
-        this.params.putAll(params);
+    public Installation addParams(@NotNull HashMap<String, Object> parameters) {
+        this.params.putAll(parameters);
         return this;
     }
 
-    /**
-     * Adds the specified parameters to this location and returns the updated
-     * location.
-     *
-     * @param headers
-     *                a {@link HashMap} containing the parameters to be added
-     * @return a new {@link Installation} object with the specified parameters added
-     * @throws NullPointerException
-     *                              if the params argument is null
-     */
-    @SuppressWarnings("unchecked")
     @Override
-    public Installation addHeaders(@NotNull HashMap headers) {
+    public Installation addHeaders(@NotNull HashMap<String, String> headers) {
         this.headers.putAll(headers);
         return this;
     }

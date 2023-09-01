@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Hosting implements BaseImplementation {
+public class Hosting implements BaseImplementation<Hosting> {
     private final HostingService service;
     protected HashMap<String, String> headers;
     protected HashMap<String, Object> params;
@@ -206,7 +206,6 @@ public class Hosting implements BaseImplementation {
      * @return a new {@link Hosting} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
     public Hosting addParam(@NotNull String key, @NotNull Object value) {
         this.params.put(key, value);
@@ -222,7 +221,6 @@ public class Hosting implements BaseImplementation {
      * @return a new {@link Hosting} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
     public Hosting addHeader(@NotNull String key, @NotNull String value) {
         this.headers.put(key, value);
@@ -237,9 +235,8 @@ public class Hosting implements BaseImplementation {
      * @return a new {@link Hosting} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public Hosting addParams(@NotNull HashMap params) {
+    public Hosting addParams(@NotNull HashMap<String, Object> params) {
         this.params.putAll(params);
         return this;
     }
@@ -252,9 +249,8 @@ public class Hosting implements BaseImplementation {
      * @return a new {@link Hosting} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public Hosting addHeaders(@NotNull HashMap headers) {
+    public Hosting addHeaders(@NotNull HashMap<String, String> headers) {
         this.headers.putAll(headers);
         return this;
     }

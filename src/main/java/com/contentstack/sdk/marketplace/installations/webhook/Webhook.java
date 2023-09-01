@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Webhook implements BaseImplementation {
+public class Webhook implements BaseImplementation<Webhook> {
 
     private final String installationId;
     protected HashMap<String, String> headers;
@@ -91,7 +91,7 @@ public class Webhook implements BaseImplementation {
      * @return a new {@link Webhook} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      */
-    @SuppressWarnings("unchecked")
+
     @Override
     public Webhook addParam(@NotNull String key, @NotNull Object value) {
         this.params.put(key, value);
@@ -107,7 +107,6 @@ public class Webhook implements BaseImplementation {
      * @return a new {@link Webhook} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
     public Webhook addHeader(@NotNull String key, @NotNull String value) {
         this.headers.put(key, value);
@@ -122,9 +121,8 @@ public class Webhook implements BaseImplementation {
      * @return a new {@link Webhook} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public Webhook addParams(@NotNull HashMap params) {
+    public Webhook addParams(@NotNull HashMap<String, Object> params) {
         this.params.putAll(params);
         return this;
     }
@@ -137,9 +135,8 @@ public class Webhook implements BaseImplementation {
      * @return a new {@link Webhook} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public Webhook addHeaders(@NotNull HashMap headers) {
+    public Webhook addHeaders(@NotNull HashMap<String, String> headers) {
         this.headers.putAll(headers);
         return this;
     }

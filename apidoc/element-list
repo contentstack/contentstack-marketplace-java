@@ -1,0 +1,10 @@
+com.contentstack.sdk
+com.contentstack.sdk.marketplace
+com.contentstack.sdk.marketplace.apps
+com.contentstack.sdk.marketplace.apps.hosting
+com.contentstack.sdk.marketplace.apps.oauth
+com.contentstack.sdk.marketplace.auths
+com.contentstack.sdk.marketplace.installations
+com.contentstack.sdk.marketplace.installations.location
+com.contentstack.sdk.marketplace.installations.webhook
+com.contentstack.sdk.marketplace.request

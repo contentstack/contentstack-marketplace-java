@@ -80,14 +80,20 @@ class OauthTests {
 
     @Test
     void testParamsAndHeaders() {
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         map.put("paramKey1", "paramValue1");
         map.put("paramKey2", "paramValue2");
-        oauth.addParams(map).addHeaders(map);
+
+        HashMap<String, Object> mapParam = new HashMap<>();
+        map.put("paramKey1", "paramValue1");
+        map.put("paramKey2", "paramValue2");
+        map.put("paramKey3", "paramValue3");
+
+        oauth.addParams(mapParam).addHeaders(map);
         Request request = oauth.addHeader("authtoken", "fake@token").findScopes().request();
         Assertions.assertTrue(request.isHttps());
         Assertions.assertEquals("GET", request.method());
-        Assertions.assertEquals(4, request.headers().size());
+        Assertions.assertEquals(5, request.headers().size());
         Assertions.assertEquals("api.contentstack.io", request.url().host());
         Assertions.assertNull(request.body());
         Assertions.assertEquals("https://api.contentstack.io/manifests/oauth/scopes", request.url().toString());
