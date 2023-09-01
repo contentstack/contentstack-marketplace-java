@@ -1,6 +1,6 @@
 package com.contentstack.sdk.marketplace;
 
-import com.contentstack.sdk.Client;
+import com.contentstack.sdk.ContentstackRegion;
 import com.contentstack.sdk.TestClient;
 import okhttp3.Request;
 import org.junit.jupiter.api.Assertions;
@@ -14,6 +14,7 @@ public class MarketplaceTest {
 
     static Marketplace marketplace;
     static final String ORG_ID = TestClient.ORGANIZATION_UID;
+
     @BeforeAll
     static void setUp() {
         marketplace = new Marketplace(ORG_ID);
@@ -23,8 +24,9 @@ public class MarketplaceTest {
     @Test
     void testConstructorWithNullOrganizationUidAndWithValidHost() {
         // Arrange
+        //String organizationUid = "nullOrganizationUid123";
         String organizationUid = null;
-        String host = "example.com"; // Provide a valid host or default host for this test
+        String host = "developerhub-api.contentstack.com"; // Provide a valid host or default host for this test
         assertThrows(IllegalArgumentException.class, () -> new Marketplace(organizationUid, host));
     }
 
@@ -63,10 +65,8 @@ public class MarketplaceTest {
         // Arrange
         String organizationUid = "org123";
         String host = "example.com"; // Provide a valid host or default host for this test
-
         // Act
         Marketplace marketplace = new Marketplace(organizationUid, host);
-
         // Assert
         Assertions.assertEquals(organizationUid, marketplace.orgId);
     }
@@ -79,10 +79,11 @@ public class MarketplaceTest {
         Assertions.assertEquals(1, request.headers().size());
     }
 
+
     @Test
-    void testClientInstanceCoverClintClass() {
-        Client client = new Client();
-        Assertions.assertEquals("Client", client.getClass().getSimpleName());
-        Assertions.assertNotNull(client);
+    void testRegion() {
+        Marketplace marketplace = new Marketplace("organizationId", "api.contentstack.com", ContentstackRegion.AZURE_NA);
+        Request request = marketplace.app("appId").fetchApp().request();
+        Assertions.assertNotNull(marketplace);
     }
 }

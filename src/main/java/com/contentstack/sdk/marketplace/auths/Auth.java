@@ -9,7 +9,7 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Auth implements BaseImplementation {
+public class Auth implements BaseImplementation<Auth> {
     private final AuthService service;
     protected HashMap<String, String> headers;
     protected HashMap<String, Object> params;
@@ -41,7 +41,6 @@ public class Auth implements BaseImplementation {
      * @return a new {@link Auth} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      */
-    @SuppressWarnings("unchecked")
     public Auth addParam(@NotNull String key, @NotNull Object value) {
         this.params.put(key, value);
         return this;
@@ -56,7 +55,6 @@ public class Auth implements BaseImplementation {
      * @return a new {@link Auth} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      */
-    @SuppressWarnings("unchecked")
     public Auth addHeader(@NotNull String key, @NotNull String value) {
         this.headers.put(key, value);
         return this;
@@ -70,8 +68,7 @@ public class Auth implements BaseImplementation {
      * @return a new {@link Auth} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      */
-    @SuppressWarnings("unchecked")
-    public Auth addParams(@NotNull HashMap params) {
+    public Auth addParams(@NotNull HashMap<String, Object> params) {
         this.params.putAll(params);
         return this;
     }
@@ -84,8 +81,7 @@ public class Auth implements BaseImplementation {
      * @return a new {@link Auth} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      */
-    @SuppressWarnings("unchecked")
-    public Auth addHeaders(@NotNull HashMap headers) {
+    public Auth addHeaders(@NotNull HashMap<String, String> headers) {
         this.headers.putAll(headers);
         return this;
     }

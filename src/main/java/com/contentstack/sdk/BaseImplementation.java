@@ -4,61 +4,62 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 
-/**
- * The interface @{@link BaseImplementation}
- */
-public interface BaseImplementation {
+// The `BaseImplementation` interface defines a set of methods that can be implemented by classes. It
+// is a generic interface, where `T` represents the type of the implementing class.
+public interface BaseImplementation<T> {
 
     /**
-     * The function adds a parameter to a collection using a key-value pair.
-     *
-     * @param <T>   the type of the parameter
-     * @param key   A string representing the key of the parameter. It cannot be
-     *              null and must be
-     *              provided as a non-null value.
-     * @param value The "value" parameter is of type Object, which means it can
-     *              accept any type of
-     *              object as its value.
-     * @return The method is returning an object of type T.
+     * The addParam function adds a parameter to a collection using a key-value
+     * pair.
+     * 
+     * @param key   A non-null String representing the key for the parameter.
+     * @param value The value parameter is of type Object, which means it can accept
+     *              any type of object
+     *              as its value.
+     * @return The addParam method does not have a return type specified, so it does
+     *         not return
+     *         anything.
      */
-    public <T> T addParam(@NotNull String key, @NotNull Object value);
+    T addParam(@NotNull String key, @NotNull Object value);
 
     /**
-     * The function adds a header with a key-value pair to a request.
-     *
-     * @param <T>   the type of the parameter
-     * @param key   The key parameter is a string that represents the name or
-     *              identifier of the header.
-     *              It is used to specify the type of information being sent in the
-     *              header.
+     * The addHeader function adds a header with a specified key and value to a
+     * request.
+     * 
+     * @param key   A non-null String representing the header key.
      * @param value The value parameter is a string that represents the value of the
      *              header.
-     * @return The method is returning an object of type T.
+     * @return The addHeader method does not have a return type specified, so it
+     *         does not return
+     *         anything.
      */
-    public <T> T addHeader(@NotNull String key, @NotNull String value);
+    T addHeader(@NotNull String key, @NotNull String value);
 
     /**
-     * The function "addParams" takes a HashMap of String keys and Object values as
-     * input and returns a
-     * generic type T.
-     *
-     * @param <T>    the type of the parameter
-     * @param params The "params" parameter is a HashMap that maps String keys to
-     *               Object values. It is
-     *               annotated with @NotNull, indicating that it cannot be null.
-     * @return The method is returning an object of type T.
+     * The function "addParams" takes a HashMap of parameters and returns a generic
+     * type T.
+     * 
+     * @param parameters A HashMap object that stores key-value pairs, where the key
+     *                   is of type String
+     *                   and the value is of type Object. The HashMap is annotated
+     *                   with @NotNull, indicating that it
+     *                   cannot be null.
+     * @return The method is not returning anything. It is a void method, which
+     *         means it does not have
+     *         a return type.
      */
-    public <T> T addParams(@NotNull HashMap<String, Object> params);
+    T addParams(@NotNull HashMap<String, Object> parameters);
 
     /**
-     * The function adds headers to a HashMap.
-     *
-     * @param <T>     the type of the parameter
-     * @param headers A HashMap containing key-value pairs of headers, where the key
-     *                is a String
-     *                representing the header name and the value is a String
-     *                representing the header value.
-     * @return The method is returning an object of type T.
+     * The function "addHeaders" takes a HashMap of headers and adds them to the
+     * request.
+     * 
+     * @param headers A HashMap object that contains key-value pairs representing
+     *                the headers to be
+     *                added. The keys represent the header names, and the values
+     *                represent the header values.
+     * @return The method is not returning anything. It is just adding headers to
+     *         the given HashMap.
      */
-    public <T> T addHeaders(@NotNull HashMap<String, String> headers);
+    T addHeaders(@NotNull HashMap<String, String> headers);
 }

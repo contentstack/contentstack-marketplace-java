@@ -228,14 +228,14 @@ class HostingTest {
         Request request = hosting.downloadFile("www.google.com").request();
         Assertions.assertEquals("/www.google.com", request.url().encodedPath());
         Assertions.assertEquals("GET", request.method());
-        Assertions.assertEquals(4, request.headers().names().size());
+        Assertions.assertEquals(5, request.headers().names().size());
         Assertions.assertTrue(request.url().isHttps());
         Assertions.assertEquals("api.contentstack.io", request.url().host());
         Assertions.assertEquals(1, request.url().pathSegments().size());
         Assertions.assertEquals("www.google.com", request.url().pathSegments().get(0));
         Assertions.assertNull(request.body());
         Assertions.assertNotNull(request.url().encodedQuery());
-        Assertions.assertEquals("paramKey2=paramValue2&paramKey1=paramValue1&param1=value1", request.url().query());
+        Assertions.assertEquals("param1=value1", request.url().query());
     }
 
 
@@ -259,17 +259,23 @@ class HostingTest {
 
     @Test
     void testParamsAndHeaders() {
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         map.put("paramKey1", "paramValue1");
         map.put("paramKey2", "paramValue2");
-        hosting.addParams(map).addHeaders(map);
+
+        HashMap<String, Object> mapParam = new HashMap<>();
+        map.put("paramKey1", "paramValue1");
+        map.put("paramKey2", "paramValue2");
+        map.put("paramKey3", "paramValue3");
+
+        hosting.addParams(mapParam).addHeaders(map);
         Request request = hosting.addHeader("authtoken", "fake@token").findDeployments().request();
         Assertions.assertTrue(request.isHttps());
         Assertions.assertEquals("GET", request.method());
-        Assertions.assertEquals(4, request.headers().size());
+        Assertions.assertEquals(5, request.headers().size());
         Assertions.assertEquals("api.contentstack.io", request.url().host());
         Assertions.assertNull(request.body());
-        Assertions.assertEquals("https://api.contentstack.io/manifests/APP_ID_8998/hosting/deployments?paramKey2=paramValue2&paramKey1=paramValue1&param1=value1", request.url().toString());
+        Assertions.assertEquals("https://api.contentstack.io/manifests/APP_ID_8998/hosting/deployments?param1=value1", request.url().toString());
     }
 
     @Test

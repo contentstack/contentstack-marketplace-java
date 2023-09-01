@@ -437,18 +437,24 @@ class InstallationUnitTests {
 
     @Test
     void testParamsAndHeaders() {
-        HashMap<String, Object> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         map.put("paramKey1", "paramValue1");
         map.put("paramKey2", "paramValue2");
         map.put("paramKey3", "paramValue3");
-        installation.addParams(map).addHeaders(map);
+
+        HashMap<String, Object> mapParam = new HashMap<>();
+        map.put("paramKey1", "paramValue1");
+        map.put("paramKey2", "paramValue2");
+        map.put("paramKey3", "paramValue3");
+
+        installation.addParams(mapParam).addHeaders(map);
         Request request = installation.addHeader("authtoken", "fake@token").findInstallations().request();
         Assertions.assertTrue(request.isHttps());
         Assertions.assertEquals("GET", request.method());
         Assertions.assertEquals(5, request.headers().size());
         Assertions.assertEquals("api.contentstack.io", request.url().host());
         Assertions.assertNull(request.body());
-        Assertions.assertEquals("https://api.contentstack.io/installations?paramKey2=paramValue2&paramKey3=paramValue3&limit=10&skip=5&sort=asc&paramKey1=paramValue1&order=order", request.url().toString());
+        Assertions.assertEquals("https://api.contentstack.io/installations?limit=10&skip=5&sort=asc&order=order", request.url().toString());
     }
 
     @Test

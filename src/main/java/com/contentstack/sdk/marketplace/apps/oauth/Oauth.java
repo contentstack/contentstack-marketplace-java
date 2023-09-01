@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Oauth implements BaseImplementation {
+public class Oauth implements BaseImplementation<Oauth> {
 
     private final OauthService service;
     protected HashMap<String, String> headers;
@@ -86,7 +86,6 @@ public class Oauth implements BaseImplementation {
      * @return a new {@link Oauth} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
     public Oauth addParam(@NotNull String key, @NotNull Object value) {
         this.params.put(key, value);
@@ -102,7 +101,6 @@ public class Oauth implements BaseImplementation {
      * @return a new {@link Oauth} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
     public Oauth addHeader(@NotNull String key, @NotNull String value) {
         this.headers.put(key, value);
@@ -117,9 +115,8 @@ public class Oauth implements BaseImplementation {
      * @return a new {@link Oauth} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public Oauth addParams(@NotNull HashMap params) {
+    public Oauth addParams(@NotNull HashMap<String, Object> params) {
         this.params.putAll(params);
         return this;
     }
@@ -132,9 +129,8 @@ public class Oauth implements BaseImplementation {
      * @return a new {@link Oauth} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      */
-    @SuppressWarnings("unchecked")
     @Override
-    public Oauth addHeaders(@NotNull HashMap headers) {
+    public Oauth addHeaders(@NotNull HashMap<String, String> headers) {
         this.headers.putAll(headers);
         return this;
     }
