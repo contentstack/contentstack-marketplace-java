@@ -1,6 +1,6 @@
 package com.contentstack.sdk.marketplace;
 
-import com.contentstack.sdk.ContentstackRegion;
+import com.contentstack.sdk.Region;
 import com.contentstack.sdk.TestClient;
 import okhttp3.Request;
 import org.junit.jupiter.api.Assertions;
@@ -17,7 +17,9 @@ public class MarketplaceTest {
 
     @BeforeAll
     static void setUp() {
-        marketplace = new Marketplace(ORG_ID);
+        marketplace = new Marketplace.Builder(ORG_ID)
+                .host("api.contentstack.io")
+                .build();
     }
 
 
@@ -26,8 +28,10 @@ public class MarketplaceTest {
         // Arrange
         //String organizationUid = "nullOrganizationUid123";
         String organizationUid = null;
-        String host = "developerhub-api.contentstack.com"; // Provide a valid host or default host for this test
-        assertThrows(IllegalArgumentException.class, () -> new Marketplace(organizationUid, host));
+        String host = "developerhub-api.contentstack.com";
+        assertThrows(NullPointerException.class, () -> new Marketplace.Builder(organizationUid)
+                .host(host)
+                .build());
     }
 
     @Test
@@ -35,21 +39,25 @@ public class MarketplaceTest {
         // Arrange
         String organizationUid = "";
         String host = "example.com"; // Provide a valid host or default host for this test
-        assertThrows(NullPointerException.class, () -> new Marketplace(organizationUid, host));
+        assertThrows(NullPointerException.class, () ->  new Marketplace.Builder(organizationUid)
+                .host(host)
+                .build());
     }
 
     @Test
     void testConstructorWithNullOrganizationUid() {
         // Arrange
         String organizationUid = "";
-        assertThrows(NullPointerException.class, () -> new Marketplace(organizationUid));
+        assertThrows(NullPointerException.class, () ->  new Marketplace.Builder(organizationUid)
+                .build());
     }
 
     @Test
     void testConstructorWithNullOrganizationUidNullCheck() {
         // Arrange
         String organizationUid = null;
-        assertThrows(IllegalArgumentException.class, () -> new Marketplace(organizationUid));
+        assertThrows(NullPointerException.class, () -> new Marketplace.Builder(organizationUid)
+                .build());
     }
 
     @Test
@@ -57,7 +65,9 @@ public class MarketplaceTest {
         // Arrange
         String organizationUid = "";
         String host = "example.com"; // Provide a valid host or default host for this test
-        assertThrows(NullPointerException.class, () -> new Marketplace(organizationUid, host));
+        assertThrows(NullPointerException.class, () -> new Marketplace.Builder(organizationUid)
+                .host(host)
+                .build());
     }
 
     @Test
@@ -66,7 +76,9 @@ public class MarketplaceTest {
         String organizationUid = "org123";
         String host = "example.com"; // Provide a valid host or default host for this test
         // Act
-        Marketplace marketplace = new Marketplace(organizationUid, host);
+        Marketplace marketplace = new Marketplace.Builder(organizationUid)
+                .host(host)
+                .build();
         // Assert
         Assertions.assertEquals(organizationUid, marketplace.orgId);
     }
@@ -82,8 +94,9 @@ public class MarketplaceTest {
 
     @Test
     void testRegion() {
-        Marketplace marketplace = new Marketplace("organizationId", "api.contentstack.com", ContentstackRegion.AZURE_NA);
-        Request request = marketplace.app("appId").fetchApp().request();
+        Marketplace marketplace = new Marketplace.Builder("organizationId")
+                .host("api.contentstack.com").region(Region.AZURE_NA)
+                .build();
         Assertions.assertNotNull(marketplace);
     }
 }
