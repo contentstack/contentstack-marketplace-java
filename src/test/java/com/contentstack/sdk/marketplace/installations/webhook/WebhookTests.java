@@ -23,7 +23,7 @@ class WebhookTests {
     }
 
     @Test
-    void testFindExecutionLogs() throws IllegalAccessException {
+    void testFindExecutionLogs() {
         webhook.addHeader("authtoken", AUTHTOKEN);
         webhook.addParam("sort", "asc");
         webhook.addParam("order", "order");
@@ -47,7 +47,7 @@ class WebhookTests {
 
 
     @Test
-    void testFetchExecutionLogs() throws IllegalAccessException {
+    void testFetchExecutionLogs() {
         webhook.addHeader("authtoken", AUTHTOKEN);
         webhook.addParam("sort", "asc");
         webhook.addParam("order", "order");
@@ -71,7 +71,7 @@ class WebhookTests {
 
 
     @Test
-    void testRetryExecution() throws IllegalAccessException {
+    void testRetryExecution() {
         webhook.addHeader("authtoken", AUTHTOKEN);
         webhook.addParam("sort", "asc");
         webhook.addParam("order", "order");
@@ -93,7 +93,7 @@ class WebhookTests {
     }
 
     @Test
-    void testParamsAndHeaders() throws IllegalAccessException {
+    void testParamsAndHeaders() {
         HashMap<String, String> map = new HashMap<>();
         map.put("paramKey1", "paramValue1");
         map.put("paramKey2", "paramValue2");
