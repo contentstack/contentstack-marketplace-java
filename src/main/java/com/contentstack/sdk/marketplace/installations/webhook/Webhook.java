@@ -36,11 +36,17 @@ public class Webhook implements BaseImplementation<Webhook> {
      * @param organizationUid the organization uid
      * @param webhookId       the webhook id
      * @param installationId  the installation id
+     *
+     *                        <p>
+     *                        <b>Example</b>
+     *                        <p>
+     *                        <code>
+     *                        Marketplace marketplace = new Marketplace.Builder("organizationId")
+     *                        .host("api.contentstack.io").build();
+     *                        Webhook webhook = marketplace.installation().webhook();
+     *                        </code>
      */
-// The `Webhook` constructor is initializing the `Webhook` object with the
-    // necessary parameters.
-    public Webhook(Retrofit client, @NotNull String organizationUid, @NotNull String webhookId,
-                   @NotNull String installationId) {
+    public Webhook(Retrofit client, @NotNull String organizationUid, @NotNull String webhookId, @NotNull String installationId) {
         this.headers = new HashMap<>();
         this.params = new HashMap<>();
         this.webhookId = webhookId;
@@ -67,7 +73,17 @@ public class Webhook implements BaseImplementation<Webhook> {
      * <li>(Optional) skip : Int : Number of records to skip</li>
      * </ul>
      *
-     * @return Call call
+     * @return Call instance of Call
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organizationId")
+     * .host("api.contentstack.io").build();
+     * Webhook webhook = marketplace.installation().webhook();
+     * Call result = webhook.findExecutionLogs().execute();
+     * </code>
      */
     public Call<ResponseBody> findExecutionLogs() {
         Objects.requireNonNull(this.installationId, "installation uid is required");
@@ -79,6 +95,16 @@ public class Webhook implements BaseImplementation<Webhook> {
      *
      * @param executionId The executionId parameter is a unique identifier for a                    specific execution. It is                    used to fetch the execution logs for that particular                    execution.
      * @return instance call
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organizationId")
+     * .host("api.contentstack.io").build();
+     * Webhook webhook = marketplace.installation().webhook();
+     * Call result = webhook.fetchExecutionLogs("executionId").execute();
+     * </code>
      */
     public Call<ResponseBody> fetchExecutionLogs(String executionId) {
         Objects.requireNonNull(this.installationId, "installation uid is required");
@@ -90,6 +116,16 @@ public class Webhook implements BaseImplementation<Webhook> {
      *
      * @param executionId The executionId parameter is a string that represents the                    unique identifier of an                    execution. It is used to identify a specific execution                    that needs to be retried.
      * @return instance call.
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organizationId")
+     * .host("api.contentstack.io").build();
+     * Webhook webhook = marketplace.installation().webhook();
+     * Call result = webhook.retryExecution("executionId").execute();
+     * </code>
      */
     public Call<ResponseBody> retryExecution(@NotNull String executionId) {
         Objects.requireNonNull(this.installationId, "installation uid is required");
@@ -106,6 +142,21 @@ public class Webhook implements BaseImplementation<Webhook> {
      * @throws NullPointerException if the key or value argument is null
      */
 
+    /**
+     * @param key   A non-null String representing the key for the parameter.
+     * @param value The value parameter is of type Object, which means it can accept              any type of object              as its value.
+     * @return instance of Webhook
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("organizationId")
+     * .host("api.contentstack.io").build();
+     * Webhook webhook = marketplace.installation().webhook();
+     * webhook.addParam("key", "value");
+     * </code>
+     */
     @Override
     public Webhook addParam(@NotNull String key, @NotNull Object value) {
         this.params.put(key, value);
@@ -120,6 +171,16 @@ public class Webhook implements BaseImplementation<Webhook> {
      * @param value the value of the header to be added
      * @return a new {@link Webhook} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
+     *
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organizationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Webhook webhook = marketplace.installation().webhook();
+     *                              webhook.addHeader("key", "value");
+     *                              </code>
      */
     @Override
     public Webhook addHeader(@NotNull String key, @NotNull String value) {
@@ -134,6 +195,16 @@ public class Webhook implements BaseImplementation<Webhook> {
      * @param params a {@link HashMap} containing the parameters to be added
      * @return a new {@link Webhook} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organizationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Webhook webhook = marketplace.installation().webhook();
+     *                              HashMap map = new HashMap();
+     *                              webhook.addParams(map);
+     *                              </code>
      */
     @Override
     public Webhook addParams(@NotNull HashMap<String, Object> params) {
@@ -148,6 +219,17 @@ public class Webhook implements BaseImplementation<Webhook> {
      * @param headers a {@link HashMap} containing the parameters to be added
      * @return a new {@link Webhook} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
+     *
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organizationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Webhook webhook = marketplace.installation().webhook();
+     *                              HashMap map = new HashMap();
+     *                              webhook.addHeaders(map);
+     *                              </code>
      */
     @Override
     public Webhook addHeaders(@NotNull HashMap<String, String> headers) {

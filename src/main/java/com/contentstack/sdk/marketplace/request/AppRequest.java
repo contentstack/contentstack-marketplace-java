@@ -37,8 +37,17 @@ public class AppRequest implements BaseImplementation<AppRequest> {
      *
      * @param data the data
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * AppRequest appRequest = marketplace.request();
+     * JSONObject body = new JSONObject();
+     * Call result = appRequest.create(body).execute();
+     * </code>
      */
-// Network Call to create a resource using JSON data.
     Call<ResponseBody> create(JSONObject data) {
         return this.service.create(this.headers, data);
     }
@@ -47,8 +56,17 @@ public class AppRequest implements BaseImplementation<AppRequest> {
      * Find call.
      *
      * @return the call
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * AppRequest appRequest = marketplace.request();
+     * Call result = appRequest.find().execute();
+     * </code>
      */
-// Network Call to list requests with headers and query parameters.
     Call<ResponseBody> find() {
         return this.service.listRequests(this.headers, this.params);
     }
@@ -57,8 +75,16 @@ public class AppRequest implements BaseImplementation<AppRequest> {
      * Find requested stacks call.
      *
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * AppRequest appRequest = marketplace.request();
+     * Call result = appRequest.findRequestedStack().execute();
+     * </code>
      */
-// Network Call to list requested stacks with headers and query parameters.
     Call<ResponseBody> findRequestedStacks() {
         return this.service.listRequestedStacks(this.headers, this.params);
     }
@@ -68,30 +94,97 @@ public class AppRequest implements BaseImplementation<AppRequest> {
      *
      * @param requestId the request id
      * @return the call
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * AppRequest appRequest = marketplace.request();
+     * JSONObject body = new JSONObject();
+     * Call result = appRequest.delete("requestId").execute();
+     * </code>
      */
-// Network Call to delete a specific request identified by requestId.
     Call<ResponseBody> delete(String requestId) {
         return this.service.deleteRequest(this.headers, requestId);
     }
 
+    /**
+     * @param key   A non-null String representing the key for the parameter.
+     * @param value The value parameter is of type Object, which means it can accept              any type of object              as its value.
+     * @return instance of AppRequest
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * AppRequest appRequest = marketplace.request();
+     * appRequest.addParam("key", "value");
+     * </code>
+     */
     @Override
     public AppRequest addParam(@NotNull String key, @NotNull Object value) {
         this.params.put(key, value);
         return this;
     }
 
+    /**
+     * @param key   A non-null String representing the header key.
+     * @param value The value parameter is a string that represents the value of the              header.
+     * @return instance of AppRequest
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * AppRequest appRequest = marketplace.request();
+     * appRequest.addHeader("key", "value");
+     * </code>
+     */
     @Override
     public AppRequest addHeader(@NotNull String key, @NotNull String value) {
         this.headers.put(key, value);
         return this;
     }
 
+    /**
+     * @param headers A HashMap object that contains key-value pairs representing                the headers to be                added. The keys represent the header names, and the values                represent the header values.
+     * @return instance of AppRequest
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * AppRequest appRequest = marketplace.request();
+     * HashMap headers = new HashMap()
+     * appRequest.addHeaders(headers);
+     * </code>
+     */
     @Override
     public AppRequest addHeaders(@NotNull HashMap<String, String> headers) {
         this.headers.putAll(headers);
         return this;
     }
 
+    /**
+     * @param parameters A HashMap object that stores key-value pairs, where the key                   is of type String                   and the value is of type Object. The HashMap is annotated                   with @NotNull, indicating that it                   cannot be null.
+     * @return instance of AppRequest
+     *
+     * <p>
+     * <b>Example</b>
+     * <p>
+     * <code>
+     * Marketplace marketplace = new Marketplace.Builder("ORGANIZATION_UID")
+     * .host("api.contentstack.io").build();
+     * AppRequest appRequest = marketplace.request();
+     * HashMap headers = new HashMap()
+     * appRequest.addParams(headers);
+     * </code>
+     */
     @Override
     public AppRequest addParams(@NotNull HashMap<String, Object> parameters) {
         this.params.putAll(parameters);
