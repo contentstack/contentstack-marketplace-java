@@ -35,7 +35,7 @@ public class Auth implements BaseImplementation<Auth> {
         this.params = new HashMap<>();
         Objects.requireNonNull(organizationUid, "Organization uid could not be empty");
         this.headers.put(Constants.ORGANIZATION_UID, organizationUid);
-        if (authtoken!=null){
+        if (authtoken != null) {
             this.headers.put(Constants.AUTHTOKEN, authtoken);
         }
         this.service = clientInstance.create(AuthService.class);
