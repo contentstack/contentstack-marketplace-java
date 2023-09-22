@@ -18,6 +18,7 @@
 .metadata
 bin/
 tmp/
+apidoc/
 *.tmp
 *.bak
 *.swp
@@ -199,3 +200,4 @@ README.html
 *.iml
 .idea
 .exercism
+/apidoc/
