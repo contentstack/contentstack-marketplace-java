@@ -1,6 +1,7 @@
 package com.contentstack.sdk.marketplace.request;
 
 import com.contentstack.sdk.BaseImplementation;
+import com.contentstack.sdk.marketplace.Constants;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONObject;
@@ -25,10 +26,13 @@ public class AppRequest implements BaseImplementation<AppRequest> {
      * @param client the client
      * @param orgId  the org id
      */
-    public AppRequest(@NotNull Retrofit client, @NotNull String orgId) {
+    public AppRequest(@NotNull Retrofit client, String authtoken, @NotNull String orgId) {
         this.service = client.create(RequestService.class);
         this.headers = new HashMap<>();
-        this.headers.put("organization_uid", orgId);
+        this.headers.put(Constants.ORGANIZATION_UID, orgId);
+        if (authtoken != null) {
+            this.headers.put(Constants.AUTHTOKEN, authtoken);
+        }
         this.params = new HashMap<>();
     }
 
