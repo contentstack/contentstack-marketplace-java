@@ -54,7 +54,7 @@ public class App implements BaseImplementation<App> {
         this.params = new HashMap<>();
         Objects.requireNonNull(organizationUid, Constants.ERROR_NO_ORGANIZATION_UID);
         this.headers.put(Constants.ORGANIZATION_UID, organizationUid);
-        if (authtoken!=null){
+        if (authtoken != null) {
             this.headers.put(Constants.AUTHTOKEN, authtoken);
         }
         this.service = client.create(AppService.class);
@@ -83,7 +83,7 @@ public class App implements BaseImplementation<App> {
         this.params = new HashMap<>();
         Objects.requireNonNull(organizationUid, ERROR_NO_ORGANIZATION_UID);
         this.headers.put(Constants.ORGANIZATION_UID, organizationUid);
-        if (authtoken!=null){
+        if (authtoken != null) {
             this.headers.put(Constants.AUTHTOKEN, authtoken);
         }
         Objects.requireNonNull(uid, "Manifest uid is required");

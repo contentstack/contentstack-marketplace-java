@@ -20,7 +20,6 @@ public class Installation implements BaseImplementation<Installation> {
     /**
      * The Missing org id.
      */
-    public final String MISSING_ORG_ID = "organization uid is required";
     private String installationId;
     private String organisationId;
     private InstallationService service;
@@ -59,7 +58,7 @@ public class Installation implements BaseImplementation<Installation> {
      */
     protected void checkOrganisationId(String organisationId) {
         if (organisationId.isEmpty()) {
-            throw new NullPointerException(MISSING_ORG_ID);
+            throw new NullPointerException(Constants.MISSING_ORG_ID);
         }
     }
 
@@ -115,7 +114,7 @@ public class Installation implements BaseImplementation<Installation> {
         this.organisationId = organisationId;
         this.client = client;
         this.headers.put(Constants.ORGANIZATION_UID, organisationId);
-        if (authtoken!=null){
+        if (authtoken != null) {
             this.headers.put(Constants.AUTHTOKEN, authtoken);
         }
         this.service = this.client.create(InstallationService.class);
