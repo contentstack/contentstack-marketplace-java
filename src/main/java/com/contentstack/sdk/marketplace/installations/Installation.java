@@ -1,6 +1,7 @@
 package com.contentstack.sdk.marketplace.installations;
 
 import com.contentstack.sdk.BaseImplementation;
+import com.contentstack.sdk.marketplace.Constants;
 import com.contentstack.sdk.marketplace.installations.location.Location;
 import com.contentstack.sdk.marketplace.installations.webhook.Webhook;
 import okhttp3.ResponseBody;
@@ -19,7 +20,6 @@ public class Installation implements BaseImplementation<Installation> {
     /**
      * The Missing org id.
      */
-    public final String MISSING_ORG_ID = "organization uid is required";
     private String installationId;
     private String organisationId;
     private InstallationService service;
@@ -45,9 +45,9 @@ public class Installation implements BaseImplementation<Installation> {
     // installationId)` is a constructor for the `Installation` class. It takes
     // three parameters: `client`,
     // `organisationId`, and `installationId`.
-    public Installation(Retrofit client, @NotNull String organisationId, @NotNull String installationId) {
+    public Installation(Retrofit client, String authtoken, @NotNull String organisationId, @NotNull String installationId) {
         checkOrganisationId(organisationId);
-        init(client, organisationId, installationId);
+        init(client, authtoken, organisationId, installationId);
     }
 
     /**
@@ -58,7 +58,7 @@ public class Installation implements BaseImplementation<Installation> {
      */
     protected void checkOrganisationId(String organisationId) {
         if (organisationId.isEmpty()) {
-            throw new NullPointerException(MISSING_ORG_ID);
+            throw new NullPointerException(Constants.MISSING_ORG_ID);
         }
     }
 
@@ -87,9 +87,9 @@ public class Installation implements BaseImplementation<Installation> {
      *                       Installation installation = marketplace.installation();
      *                       </code>
      */
-    public Installation(@NotNull Retrofit client, @NotNull String organisationId) {
+    public Installation(@NotNull Retrofit client, String authtoken, @NotNull String organisationId) {
         checkOrganisationId(organisationId);
-        init(client, organisationId, null);
+        init(client, authtoken, organisationId, null);
     }
 
     /**
@@ -107,13 +107,16 @@ public class Installation implements BaseImplementation<Installation> {
      *                       represents the unique identifier
      *                       for an installation.
      */
-    private void init(Retrofit client, @NotNull String organisationId, String installationId) {
+    private void init(Retrofit client, String authtoken, @NotNull String organisationId, String installationId) {
         this.headers = new HashMap<>();
         this.params = new HashMap<>();
         this.installationId = installationId;
         this.organisationId = organisationId;
         this.client = client;
-        this.headers.put("organization_uid", organisationId);
+        this.headers.put(Constants.ORGANIZATION_UID, organisationId);
+        if (authtoken != null) {
+            this.headers.put(Constants.AUTHTOKEN, authtoken);
+        }
         this.service = this.client.create(InstallationService.class);
     }
 
