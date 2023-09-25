@@ -19,7 +19,13 @@ To use the Marketplace SDK in your Java project, follow these steps:
 ```xml  
 <!-- https://mvnrepository.com/artifact/com.contentstack.sdk/marketplace -->  
 <dependencies>  
- <dependency> <groupId>com.contentstack.sdk</groupId> <artifactId>marketplace</artifactId> <version>x.x.x</version> <!-- Replace 'x.x.x' with the latest version available --> </dependency></dependencies>  
+ <dependency> <groupId>com.contentstack.sdk</groupId> 
+     <artifactId>marketplace</artifactId> 
+     <version>x.x.x</version> <!-- Replace 'x.x.x' with the latest version available --> 
+ </dependency>
+</dependencies>  
+
+
 ```  
 
 2. Save the pom.xml file.
