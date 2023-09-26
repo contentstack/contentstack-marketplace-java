@@ -9,9 +9,7 @@ import retrofit2.http.QueryMap;
 
 import java.util.Map;
 
-/**
- * The interface Location service.
- */
+
 public interface LocationService {
 
     /**

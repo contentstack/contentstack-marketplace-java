@@ -20,9 +20,9 @@ public interface RequestService {
      * @return the call
      */
     @POST("requests")
-        Call<ResponseBody> create(
-                        @HeaderMap Map<String, String> headers,
-                        @Body JSONObject body);
+    Call<ResponseBody> create(
+            @HeaderMap Map<String, String> headers,
+            @Body JSONObject body);
 
     /**
      * List requests call.
@@ -32,9 +32,9 @@ public interface RequestService {
      * @return the call
      */
     @GET("requests")
-        Call<ResponseBody> listRequests(
-                        @HeaderMap Map<String, String> headers,
-                        @QueryMap Map<String, Object> parameters);
+    Call<ResponseBody> listRequests(
+            @HeaderMap Map<String, String> headers,
+            @QueryMap Map<String, Object> parameters);
 
     /**
      * List requested stacks call.
@@ -44,9 +44,9 @@ public interface RequestService {
      * @return the call
      */
     @GET("requests/view/stacks")
-        Call<ResponseBody> listRequestedStacks(
-                        @HeaderMap Map<String, String> headers,
-                        @QueryMap Map<String, Object> parameters);
+    Call<ResponseBody> listRequestedStacks(
+            @HeaderMap Map<String, String> headers,
+            @QueryMap Map<String, Object> parameters);
 
     /**
      * Delete request call.
@@ -56,7 +56,7 @@ public interface RequestService {
      * @return the call
      */
     @DELETE("requests/{uid}")
-        Call<ResponseBody> deleteRequest(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("uid") String uid);
+    Call<ResponseBody> deleteRequest(
+            @HeaderMap Map<String, String> headers,
+            @Path("uid") String uid);
 }

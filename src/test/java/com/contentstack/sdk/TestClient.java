@@ -53,7 +53,7 @@ public class TestClient {
                 .Builder(TestClient.ORGANIZATION_UID)
                 .host(HOST)
                 .authtoken("test")
-                .login("test@email.com", "********************************")
+                .login("test@email.com", "************")
                 .region(Region.AZURE_EU)
                 .build();
     }
