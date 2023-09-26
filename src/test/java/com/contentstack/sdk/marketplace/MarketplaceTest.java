@@ -23,13 +23,20 @@ public class MarketplaceTest {
     }
 
 
+//    @Test
+//    void loginTest() {
+//        Marketplace resp = TestClient.getMarketplaceWithLogin();
+//        resp.app("login");
+//        System.out.println(resp);
+//    }
+
     @Test
     void testConstructorWithNullOrganizationUidAndWithValidHost() {
         // Arrange
         //String organizationUid = "nullOrganizationUid123";
         String organizationUid = null;
         String host = "developerhub-api.contentstack.com";
-        assertThrows(NullPointerException.class, () -> new Marketplace.Builder(organizationUid)
+        assertThrows(IllegalArgumentException.class, () -> new Marketplace.Builder(organizationUid)
                 .host(host)
                 .build());
     }
@@ -39,7 +46,7 @@ public class MarketplaceTest {
         // Arrange
         String organizationUid = "";
         String host = "example.com"; // Provide a valid host or default host for this test
-        assertThrows(NullPointerException.class, () ->  new Marketplace.Builder(organizationUid)
+        assertThrows(NullPointerException.class, () -> new Marketplace.Builder(organizationUid)
                 .host(host)
                 .build());
     }
@@ -48,7 +55,7 @@ public class MarketplaceTest {
     void testConstructorWithNullOrganizationUid() {
         // Arrange
         String organizationUid = "";
-        assertThrows(NullPointerException.class, () ->  new Marketplace.Builder(organizationUid)
+        assertThrows(NullPointerException.class, () -> new Marketplace.Builder(organizationUid)
                 .build());
     }
 
@@ -56,7 +63,7 @@ public class MarketplaceTest {
     void testConstructorWithNullOrganizationUidNullCheck() {
         // Arrange
         String organizationUid = null;
-        assertThrows(NullPointerException.class, () -> new Marketplace.Builder(organizationUid)
+        assertThrows(IllegalArgumentException.class, () -> new Marketplace.Builder(organizationUid)
                 .build());
     }
 
@@ -99,4 +106,13 @@ public class MarketplaceTest {
                 .build();
         Assertions.assertNotNull(marketplace);
     }
+
+    @Test
+    void testMarketplaceLogin() {
+        Marketplace marketplace = new Marketplace.Builder("organizationId")
+                .host("api.contentstack.com").region(Region.AZURE_NA)
+                .build();
+        Assertions.assertNotNull(marketplace);
+    }
+
 }
