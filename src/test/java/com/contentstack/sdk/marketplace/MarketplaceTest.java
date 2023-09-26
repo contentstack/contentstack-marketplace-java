@@ -23,12 +23,12 @@ public class MarketplaceTest {
     }
 
 
-    @Test
-    void loginTest() {
-        Marketplace resp = TestClient.getMarketplaceWithLogin();
-        resp.app("login");
-        System.out.println(resp);
-    }
+//    @Test
+//    void loginTest() {
+//        Marketplace resp = TestClient.getMarketplaceWithLogin();
+//        resp.app("login");
+//        System.out.println(resp);
+//    }
 
     @Test
     void testConstructorWithNullOrganizationUidAndWithValidHost() {

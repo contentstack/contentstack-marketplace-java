@@ -26,7 +26,6 @@ public class Marketplace {
     protected final String orgId;
     private final String host;
 
-    private static final String DEFAULT_HOST = "developerhub-api.contentstack.com";
     private final String authtoken;
 
     private Marketplace(String authtoken, String organizationUid, String host, Region region) {
@@ -35,7 +34,7 @@ public class Marketplace {
         if (region != null) {
             host = region.name().toLowerCase() + "-" + host;
         }
-        this.host = host.isEmpty() ? DEFAULT_HOST : host;
+        this.host = host.isEmpty() ? Constants.DEFAULT_HOST : host;
         this.client = Client.getInstance(this.host);
     }
 
