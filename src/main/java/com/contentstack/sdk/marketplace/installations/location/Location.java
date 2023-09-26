@@ -9,9 +9,7 @@ import retrofit2.Retrofit;
 import java.util.HashMap;
 import java.util.Objects;
 
-/**
- * The type Location.
- */
+
 public class Location implements BaseImplementation<Location> {
 
     private final String installationId;
@@ -79,15 +77,15 @@ public class Location implements BaseImplementation<Location> {
      * @return a new {@link Location} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      *
-     * <p>
-     * <b>Example</b>
-     * <p>
-     * <code>
-     * Marketplace marketplace = new Marketplace.Builder("organizationId")
-     * .host("api.contentstack.io").build();
-     * Location location = marketplace.installation().location();
-     * Location result = location.addParam("key", "value")
-     * </code>
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organizationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Location location = marketplace.installation().location();
+     *                              Location result = location.addParam("key", "value")
+     *                              </code>
      */
     @Override
     public Location addParam(@NotNull String key, @NotNull Object value) {
@@ -104,15 +102,15 @@ public class Location implements BaseImplementation<Location> {
      * @return a new {@link Location} object with the specified header added
      * @throws NullPointerException if the key or value argument is null
      *
-     * <p>
-     * <b>Example</b>
-     * <p>
-     * <code>
-     * Marketplace marketplace = new Marketplace.Builder("organizationId")
-     * .host("api.contentstack.io").build();
-     * Location location = marketplace.installation().location();
-     * Location result = location.addHeader("key", "value")
-     * </code>
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organizationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Location location = marketplace.installation().location();
+     *                              Location result = location.addHeader("key", "value")
+     *                              </code>
      */
     @Override
     public Location addHeader(@NotNull String key, @NotNull String value) {
@@ -128,16 +126,16 @@ public class Location implements BaseImplementation<Location> {
      * @return a new {@link Location} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      *
-     * <p>
-     * <b>Example</b>
-     * <p>
-     * <code>
-     * Marketplace marketplace = new Marketplace.Builder("organizationId")
-     * .host("api.contentstack.io").build();
-     * Location location = marketplace.installation().location();
-     * HashMap map = new HashMap();
-     * Location result = location.addParams(map)
-     * </code>
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organizationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Location location = marketplace.installation().location();
+     *                              HashMap map = new HashMap();
+     *                              Location result = location.addParams(map)
+     *                              </code>
      */
     @Override
     public Location addParams(@NotNull HashMap<String, Object> params) {
@@ -153,16 +151,16 @@ public class Location implements BaseImplementation<Location> {
      * @return a new {@link Location} object with the specified parameters added
      * @throws NullPointerException if the params argument is null
      *
-     * <p>
-     * <b>Example</b>
-     * <p>
-     * <code>
-     * Marketplace marketplace = new Marketplace.Builder("organizationId")
-     * .host("api.contentstack.io").build();
-     * Location location = marketplace.installation().location();
-     * HashMap map = new HashMap();
-     * Location result = location.addHeaders(map)
-     * </code>
+     *                              <p>
+     *                              <b>Example</b>
+     *                              <p>
+     *                              <code>
+     *                              Marketplace marketplace = new Marketplace.Builder("organizationId")
+     *                              .host("api.contentstack.io").build();
+     *                              Location location = marketplace.installation().location();
+     *                              HashMap map = new HashMap();
+     *                              Location result = location.addHeaders(map)
+     *                              </code>
      */
     @Override
     public Location addHeaders(@NotNull HashMap<String, String> headers) {

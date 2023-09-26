@@ -1,6 +1,7 @@
 package com.contentstack.sdk.marketplace.auths;
 
 import com.contentstack.sdk.BaseImplementation;
+import com.contentstack.sdk.marketplace.Constants;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
@@ -29,11 +30,14 @@ public class Auth implements BaseImplementation<Auth> {
      * @param clientInstance  the client instance
      * @param organizationUid the organization uid
      */
-    public Auth(Retrofit clientInstance, String organizationUid) {
+    public Auth(Retrofit clientInstance, String authtoken, String organizationUid) {
         this.headers = new HashMap<>();
         this.params = new HashMap<>();
         Objects.requireNonNull(organizationUid, "Organization uid could not be empty");
-        this.headers.put("organization_uid", organizationUid);
+        this.headers.put(Constants.ORGANIZATION_UID, organizationUid);
+        if (authtoken != null) {
+            this.headers.put(Constants.AUTHTOKEN, authtoken);
+        }
         this.service = clientInstance.create(AuthService.class);
     }
 

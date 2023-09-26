@@ -1,6 +1,7 @@
 package com.contentstack.sdk.marketplace.apps;
 
 import com.contentstack.sdk.BaseImplementation;
+import com.contentstack.sdk.marketplace.Constants;
 import com.contentstack.sdk.marketplace.apps.hosting.Hosting;
 import com.contentstack.sdk.marketplace.apps.oauth.Oauth;
 import okhttp3.ResponseBody;
@@ -11,6 +12,9 @@ import retrofit2.Retrofit;
 
 import java.util.HashMap;
 import java.util.Objects;
+
+import static com.contentstack.sdk.marketplace.Constants.ERROR_NO_ORGANIZATION_UID;
+
 
 /**
  * App/Manifest is used for creating/updating/deleting app in your Contentstack
@@ -27,8 +31,6 @@ public class App implements BaseImplementation<App> {
     protected HashMap<String, Object> params;
     private String appUid;
     private final Retrofit client;
-    private final static String ORGANIZATION_UID = "organization_uid";
-    private final static String ERROR_NO_ORGANIZATION_UID = "Organization uid could not be empty";
 
     /**
      * Instantiates a new Organization.
@@ -46,12 +48,15 @@ public class App implements BaseImplementation<App> {
      *                        App app = marketplace.app();
      *                        </code>
      */
-    public App(Retrofit client, @NotNull String organizationUid) {
+    public App(Retrofit client, String authtoken, @NotNull String organizationUid) {
         this.client = client;
         this.headers = new HashMap<>();
         this.params = new HashMap<>();
-        Objects.requireNonNull(organizationUid, ERROR_NO_ORGANIZATION_UID);
-        this.headers.put(ORGANIZATION_UID, organizationUid);
+        Objects.requireNonNull(organizationUid, Constants.ERROR_NO_ORGANIZATION_UID);
+        this.headers.put(Constants.ORGANIZATION_UID, organizationUid);
+        if (authtoken != null) {
+            this.headers.put(Constants.AUTHTOKEN, authtoken);
+        }
         this.service = client.create(AppService.class);
     }
 
@@ -72,12 +77,15 @@ public class App implements BaseImplementation<App> {
      *                        App app = marketplace.app();
      *                        </code>
      */
-    public App(Retrofit client, @NotNull String organizationUid, @NotNull String uid) {
+    public App(Retrofit client, String authtoken, @NotNull String organizationUid, @NotNull String uid) {
         this.client = client;
         this.headers = new HashMap<>();
         this.params = new HashMap<>();
         Objects.requireNonNull(organizationUid, ERROR_NO_ORGANIZATION_UID);
-        this.headers.put(ORGANIZATION_UID, organizationUid);
+        this.headers.put(Constants.ORGANIZATION_UID, organizationUid);
+        if (authtoken != null) {
+            this.headers.put(Constants.AUTHTOKEN, authtoken);
+        }
         Objects.requireNonNull(uid, "Manifest uid is required");
         this.appUid = uid;
         this.service = client.create(AppService.class);
@@ -401,7 +409,7 @@ public class App implements BaseImplementation<App> {
      * </code>
      */
     public Oauth oauth() {
-        String orgId = this.headers.get(ORGANIZATION_UID);
+        String orgId = this.headers.get(Constants.ORGANIZATION_UID);
         return new Oauth(this.client, orgId);
     }
 
@@ -420,7 +428,7 @@ public class App implements BaseImplementation<App> {
      * </code>
      */
     public Oauth oauth(@NotNull String id) {
-        String orgId = this.headers.get(ORGANIZATION_UID);
+        String orgId = this.headers.get(Constants.ORGANIZATION_UID);
         return new Oauth(this.client, orgId, id);
     }
 
@@ -438,7 +446,7 @@ public class App implements BaseImplementation<App> {
      * </code>
      */
     public Hosting hosting() {
-        String orgId = this.headers.get(ORGANIZATION_UID);
+        String orgId = this.headers.get(Constants.ORGANIZATION_UID);
         return new Hosting(this.client, orgId, this.appUid);
     }
 
@@ -457,7 +465,7 @@ public class App implements BaseImplementation<App> {
      * </code>
      */
     public Hosting hosting(@NotNull String appId) {
-        String orgId = this.headers.get(ORGANIZATION_UID);
+        String orgId = this.headers.get(Constants.ORGANIZATION_UID);
         return new Hosting(this.client, orgId, appId);
     }
 

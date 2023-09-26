@@ -20,9 +20,9 @@ public interface InstallationService {
      * @return the call
      */
     @GET("installations/view/apps")
-        Call<ResponseBody> listInstalledApps(
-                        @HeaderMap Map<String, String> headers,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> listInstalledApps(
+            @HeaderMap Map<String, String> headers,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * List installations call.
@@ -32,9 +32,9 @@ public interface InstallationService {
      * @return the call
      */
     @GET("installations")
-        Call<ResponseBody> listInstallations(
-                        @HeaderMap Map<String, String> headers,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> listInstallations(
+            @HeaderMap Map<String, String> headers,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * Gets installations.
@@ -45,10 +45,10 @@ public interface InstallationService {
      * @return the installations
      */
     @GET("installations/{id}")
-        Call<ResponseBody> getInstallations(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("id") String id,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> getInstallations(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") String id,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * Gets installation data.
@@ -59,10 +59,10 @@ public interface InstallationService {
      * @return the installation data
      */
     @GET("installations/{id}/installationData")
-        Call<ResponseBody> getInstallationData(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("id") String id,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> getInstallationData(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") String id,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * Update installation call.
@@ -74,11 +74,11 @@ public interface InstallationService {
      * @return the call
      */
     @PUT("installations/{id}")
-        Call<ResponseBody> updateInstallation(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("id") String id,
-                        @Body JSONObject requestBody,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> updateInstallation(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") String id,
+            @Body JSONObject requestBody,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * List installed users call.
@@ -88,9 +88,9 @@ public interface InstallationService {
      * @return the call
      */
     @GET("installations/view/users")
-        Call<ResponseBody> listInstalledUsers(
-                        @HeaderMap Map<String, String> headers,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> listInstalledUsers(
+            @HeaderMap Map<String, String> headers,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * List installed stacks call.
@@ -100,9 +100,9 @@ public interface InstallationService {
      * @return the call
      */
     @GET("installations/view/stacks")
-        Call<ResponseBody> listInstalledStacks(
-                        @HeaderMap Map<String, String> headers,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> listInstalledStacks(
+            @HeaderMap Map<String, String> headers,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * Uninstall call.
@@ -112,9 +112,9 @@ public interface InstallationService {
      * @return the call
      */
     @DELETE("installations/{id}")
-        Call<ResponseBody> uninstall(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("id") String id);
+    Call<ResponseBody> uninstall(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") String id);
 
     /**
      * Gets app configuration.
@@ -125,10 +125,10 @@ public interface InstallationService {
      * @return the app configuration
      */
     @GET("installations/{id}/configuration")
-        Call<ResponseBody> getAppConfiguration(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("id") String id,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> getAppConfiguration(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") String id,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * Gets server configuration.
@@ -139,10 +139,10 @@ public interface InstallationService {
      * @return the server configuration
      */
     @GET("installations/{id}/server-configuration")
-        Call<ResponseBody> getServerConfiguration(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("id") String id,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> getServerConfiguration(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") String id,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * Update server configuration call.
@@ -154,11 +154,11 @@ public interface InstallationService {
      * @return the call
      */
     @PUT("installations/{id}/server-configuration")
-        Call<ResponseBody> updateServerConfiguration(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("id") String id,
-                        @Body JSONObject body,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> updateServerConfiguration(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") String id,
+            @Body JSONObject body,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * Update stack configuration call.
@@ -170,11 +170,11 @@ public interface InstallationService {
      * @return the call
      */
     @PUT("installations/{id}/configuration")
-        Call<ResponseBody> updateStackConfiguration(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("id") String id,
-                        @Body JSONObject body,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> updateStackConfiguration(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") String id,
+            @Body JSONObject body,
+            @QueryMap Map<String, Object> queryParams);
 
     /**
      * Create installation token call.
@@ -185,9 +185,9 @@ public interface InstallationService {
      * @return the call
      */
     @POST("installations/{id}/token")
-        Call<ResponseBody> createInstallationToken(
-                        @HeaderMap Map<String, String> headers,
-                        @Path("id") String id,
-                        @QueryMap Map<String, Object> queryParams);
+    Call<ResponseBody> createInstallationToken(
+            @HeaderMap Map<String, String> headers,
+            @Path("id") String id,
+            @QueryMap Map<String, Object> queryParams);
 
 }
