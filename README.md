@@ -8,7 +8,7 @@ Before using the **Marketplace** SDK, ensure the following:
 
 1. Java JDK 1.8 or above should be installed on your machine.
 2. You have a valid Contentstack account with access to the Contentstack Marketplace.
-3. You have obtained the necessary credentials, including the organization UID, to interact with the Marketplace API.
+3. You have obtained the necessary credentials like **organization UID** and **authtoken**, to interact with the Marketplace API.
 
 ## Installation
 
@@ -16,16 +16,17 @@ To use the Marketplace SDK in your Java project, follow these steps:
 
 1. Download the contentstack-java SDK and its dependencies from the Contentstack Maven repository. Add the following dependencies to your project's pom.xml file:
 
-```xml
-<!-- https://mvnrepository.com/artifact/com.contentstack.sdk/marketplace -->
-<dependencies>
-    <dependency>
-        <groupId>com.contentstack.sdk</groupId>
-        <artifactId>marketplace</artifactId>
-        <version>x.x.x</version> <!-- Replace 'x.x.x' with the latest version available -->
-    </dependency>
-</dependencies>
-```
+```xml  
+<!-- https://mvnrepository.com/artifact/com.contentstack.sdk/marketplace -->  
+<dependencies>  
+ <dependency> <groupId>com.contentstack.sdk</groupId> 
+     <artifactId>marketplace</artifactId> 
+     <version>x.x.x</version> <!-- Replace 'x.x.x' with the latest version available --> 
+ </dependency>
+</dependencies>  
+
+
+```  
 
 2. Save the pom.xml file.
 
@@ -33,65 +34,53 @@ To use the Marketplace SDK in your Java project, follow these steps:
 
 ## How to Use
 
-1. Import the required packages:
+1. Initialize the Marketplace class with your organization UID:
 
-```java
+```java  
 import com.contentstack.sdk.marketplace.Marketplace;
-import com.contentstack.sdk.marketplace.apps.App;
-import com.contentstack.sdk.marketplace.auths.Auth;
-import com.contentstack.sdk.marketplace.installations.Installation;
-import com.contentstack.sdk.marketplace.request.AppRequest;
-import org.jetbrains.annotations.NotNull;
-import retrofit2.Retrofit;
-```
+Marketplace marketplace = new Marketplace  
+        .Builder(TestClient.ORGANIZATION_UID)  // Required
+        .host(HOST)  // Optional
+        .authtoken("test")  // Optional
+        .login("test@email.com", "*********")  // Optional
+        .region(Region.AZURE_EU)  // Optional
+        .build();  
+```  
 
-2. Initialize the Marketplace class with your organization UID:
-
-```java
-// Replace 'YOUR_ORG_ID' with your Contentstack organization UID
-String organizationUid = "YOUR_ORG_ID";
-Marketplace marketplace = new Marketplace(organizationUid);
-```
-
-3. Use the various methods available in the Marketplace class to interact with the Marketplace API:
+2. Use the various methods available in the Marketplace class to interact with the Marketplace API:
 
 ### Retrieve an instance of the App class:
-
-```java
-// Get an instance of the App class
-App app = marketplace.app();
-
-// Alternatively, you can pass the app UID to retrieve a specific app
-String appUid = "APP_UID";
-App specificApp = marketplace.app(appUid);
-```
+Get an instance of the App class
+```java  
+import com.contentstack.sdk.marketplace.apps.App; 
+App app = marketplace.app();  
+// Alternatively, you can pass the app UID to retrieve a specific app   
+App specificApp = marketplace.app("APP_UID");  
+```  
 
 ### Retrieve an instance of the Auth class:
 
 ```java
-// Get an instance of the Auth class
-Auth auth = marketplace.authorizations();
-```
+import com.contentstack.sdk.marketplace.auths.Auth;  
+// Get an instance of the Auth class  
+Auth auth = marketplace.authorizations();  
+```  
 
 ### Retrieve an instance of the Installation class:
-
+Get an instance of the Installation class
 ```java
-// Get an instance of the Installation class
-Installation installation = marketplace.installation();
-
-// Alternatively, you can pass the installation ID to retrieve a specific installation
-String installationId = "INSTALLATION_ID";
-Installation specificInstallation = marketplace.installation(installationId);
-```
+import com.contentstack.sdk.marketplace.installations.Installation; 
+Installation installation = marketplace.installation();  
+OR 
+Installation specificInstallation = marketplace.installation("INSTALLATION_ID");  
+```  
 
 ### Create an instance of the AppRequest class:
-
+Get an instance of the AppRequest class
 ```java
-// Get an instance of the AppRequest class
-AppRequest appRequest = marketplace.request();
-```
-
-**Note:** Replace **YOUR_ORG_ID**, **APP_UID**, and **INSTALLATION_ID** with actual values from your Contentstack organization.
+import com.contentstack.sdk.marketplace.request.AppRequest;  
+AppRequest appRequest = marketplace.request();  
+```   
 
 ## License
 
@@ -102,3 +91,4 @@ Copyright © 2012-2023 [Contentstack](https://www.contentstack.com/). All Rights
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
