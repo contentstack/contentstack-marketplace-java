@@ -36,7 +36,7 @@ public class MarketplaceTest {
         //String organizationUid = "nullOrganizationUid123";
         String organizationUid = null;
         String host = "developerhub-api.contentstack.com";
-        assertThrows(IllegalArgumentException.class, () -> new Marketplace.Builder(organizationUid)
+        assertThrows(NullPointerException.class, () -> new Marketplace.Builder(organizationUid)
                 .host(host)
                 .build());
     }
@@ -63,7 +63,7 @@ public class MarketplaceTest {
     void testConstructorWithNullOrganizationUidNullCheck() {
         // Arrange
         String organizationUid = null;
-        assertThrows(IllegalArgumentException.class, () -> new Marketplace.Builder(organizationUid)
+        assertThrows(NullPointerException.class, () -> new Marketplace.Builder(organizationUid)
                 .build());
     }
 

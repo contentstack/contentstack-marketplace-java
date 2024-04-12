@@ -161,7 +161,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
