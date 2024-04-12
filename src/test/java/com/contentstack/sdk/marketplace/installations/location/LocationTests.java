@@ -60,7 +60,7 @@ class LocationTests {
         Assertions.assertEquals(5, request.headers().size());
         Assertions.assertEquals("api.contentstack.io", request.url().host());
         Assertions.assertNull(request.body());
-        Assertions.assertEquals("https://api.contentstack.io/installations/orgId999999999/locations/configuration?param1=value1", request.url().toString());
+        Assertions.assertEquals("https://api.contentstack.io/installations/"+ ORG_UID +"/locations/configuration?param1=value1", request.url().toString());
     }
 
 

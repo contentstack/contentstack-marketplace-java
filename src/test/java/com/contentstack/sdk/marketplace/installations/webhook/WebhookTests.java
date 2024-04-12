@@ -111,7 +111,7 @@ class WebhookTests {
         Assertions.assertEquals(5, request.headers().size());
         Assertions.assertEquals("api.contentstack.io", request.url().host());
         Assertions.assertNull(request.body());
-        Assertions.assertEquals("https://api.contentstack.io/installations/installation_id/webhooks/orgId999999999/executions?limit=10&skip=5&sort=asc&order=order", request.url().toString());
+        Assertions.assertEquals("https://api.contentstack.io/installations/installation_id/webhooks/" + WEBHOOK_ID + "/executions?limit=10&skip=5&sort=asc&order=order", request.url().toString());
     }
 
 
