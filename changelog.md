@@ -2,9 +2,9 @@
 
 A brief description of what changes project contains
 
-#### v1.0.1
+#### v1.1.0
 
-- added surefire plugin to generate test report
+- added GCP_NA region support
 
 ## Introducing Release Of Java Marketplace SDK
 
