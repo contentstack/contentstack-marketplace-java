@@ -25,4 +25,8 @@ public enum Region {
      * Azure na region.
      */
     AZURE_NA,
+    /**
+     * Gcp na region.
+     */
+    GCP_NA,
 }

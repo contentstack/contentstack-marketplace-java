@@ -47,6 +47,14 @@ public class TestClient {
                 .build();
     }
 
+    public static Marketplace getMarketplaceGcpNa() {
+        return new Marketplace
+                .Builder(TestClient.ORGANIZATION_UID)
+                .host(HOST)
+                .region(Region.GCP_NA)
+                .build();
+    }
+
 
     public static Marketplace getMarketplaceWithLogin() {
         return new Marketplace
