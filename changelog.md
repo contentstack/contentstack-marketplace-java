@@ -2,11 +2,11 @@
 
 A brief description of what changes project contains
 
-#### v1.1.1
+#### v1.0.2
 
 - Fixed the SRE issues
 
-#### v1.1.0
+#### v1.0.1
 
 - added GCP_NA region support
 
