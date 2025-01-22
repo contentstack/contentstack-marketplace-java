@@ -62,6 +62,11 @@
             <name>MIT</name>
             <url>https://www.opensource.org/licenses/mit-license.php</url>
         </license>
+         <license>
+            <name>EPL-1.0</name>
+            <url>https://www.eclipse.org/legal/epl-v10.html</url>
+            <distribution>repo</distribution>
+        </license>
     </licenses>
 
     <organization>
