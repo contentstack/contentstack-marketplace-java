@@ -2,6 +2,10 @@
 
 A brief description of what changes project contains
 
+#### v1.0.3
+
+- Fixed snyk issues
+
 #### v1.0.2
 
 - Fixed the SRE issues
