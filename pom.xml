@@ -33,7 +33,7 @@
         <maven-site-plugin.version>4.0.0-M9</maven-site-plugin.version>
         <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
+        <central-publishing-maven-plugin.version>0.8.0</central-publishing-maven-plugin.version>
         <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
     </properties>
 
@@ -89,23 +89,21 @@
         </developer>
     </developers>
 
+    <!-- Old OSSRH/Nexus Configuration - Commented out for new Central Publishing -->
+    <!--
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
             <name>Apache Maven Packages Snapshot</name>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
-        <!-- <snapshotRepository>
-            <id>github</id>
-            <name>GitHub Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/contentstack/contentstack-management-java</url>
-        </snapshotRepository> -->
         <repository>
             <id>ossrh</id>
             <name>Apache Maven Packages Release</name>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+    -->
 
 
     <dependencies>
@@ -141,7 +139,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok-source.version}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.github.cdimascio</groupId>
@@ -273,6 +271,13 @@
                 <configuration>
                     <source>8</source>
                     <target>8</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok-source.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <showDeprecation>true</showDeprecation>
                     <showWarnings>true</showWarnings>
@@ -281,15 +286,16 @@
                     </compilerArgs>
                 </configuration>
             </plugin>
+            <!-- New Central Publishing Maven Plugin -->
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>${nexus-staging-maven-plugin.version}</version>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${central-publishing-maven-plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>
+                    <waitUntil>published</waitUntil>
                 </configuration>
             </plugin>
             <plugin>
