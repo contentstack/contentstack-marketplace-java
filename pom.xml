@@ -6,6 +6,7 @@
     <groupId>com.contentstack.sdk</groupId>
     <artifactId>marketplace</artifactId>
     <version>1.0.4-beta</version>
+    <name>Contentstack Marketplace Java SDK</name>
     <description>Contentstack Java Management SDK for Content Management API</description>
     <url>https://github.com/contentstack/contentstack-management-java/</url>
 
