@@ -46,6 +46,9 @@ public class Marketplace {
 
 
         public Builder(@NotNull String organizationUid) {
+            if (organizationUid == null) {
+                throw new IllegalArgumentException(Constants.ERROR_NO_ORGANIZATION_UID);
+            }
             if (organizationUid.isEmpty()) {
                 throw new NullPointerException("Empty fields are not allowed");
             }
