@@ -4,9 +4,6 @@
 name: Maven Package
 
 on:
-  push:
-    branches:
-      - fix/DX-3277-release-workflow
   release:
     types: [created]
 
