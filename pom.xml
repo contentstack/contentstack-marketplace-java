@@ -20,10 +20,10 @@
         <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
         <dotenv-source.version>5.2.2</dotenv-source.version>
         <rxjava-source.version>3.1.6</rxjava-source.version>
-        <retrofit-source.version>2.10.0</retrofit-source.version>
-        <converter-gson-version>2.10.0</converter-gson-version>
-        <okhttp.version>4.12.0</okhttp.version>
-        <okio.version>3.4.0</okio.version>
+        <retrofit-source.version>3.0.0</retrofit-source.version>
+        <converter-gson-version>3.0.0</converter-gson-version>
+        <okhttp.version>5.1.0</okhttp.version>
+        <okio.version>3.9.1</okio.version>
         <logging.version>4.10.0</logging.version>
         <jococo-plugin.version>0.8.7</jococo-plugin.version>
         <lombok-source.version>1.18.36</lombok-source.version>
@@ -125,6 +125,12 @@
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
         </dependency>
+        <!-- OkHttp 5+: the okhttp artifact is a stub on Maven; JVM classes ship in okhttp-jvm -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp-jvm</artifactId>
+            <version>${okhttp.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.squareup.okio</groupId>
             <artifactId>okio</artifactId>
@@ -169,7 +175,7 @@
        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
-            <version>2.1.0</version>
+            <version>2.2.0</version>
         </dependency>
     </dependencies>
 
@@ -225,6 +231,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
                 <configuration>
                     <source>8</source>
                 </configuration>
