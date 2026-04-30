@@ -1,0 +1,109 @@
+name: Check Version Bump
+
+on:
+  pull_request:
+
+jobs:
+  version-bump:
+    name: Version & Changelog bump
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed files and version bump
+        id: detect
+        run: |
+          set -euo pipefail
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+
+          VERSION_FILES_CHANGED=false
+          echo "$FILES" | grep -qx 'pom.xml' && VERSION_FILES_CHANGED=true
+          echo "$FILES" | grep -qE '^changelog\.md$|^CHANGELOG\.md$|^CHANGELOG\.MD$' && VERSION_FILES_CHANGED=true
+          echo "version_files_changed=$VERSION_FILES_CHANGED" >> "$GITHUB_OUTPUT"
+
+          CODE_CHANGED=false
+          echo "$FILES" | grep -qE '^src/|^pom.xml' && CODE_CHANGED=true
+          echo "code_changed=$CODE_CHANGED" >> "$GITHUB_OUTPUT"
+
+      - name: Skip when only test/docs/.github changed
+        if: steps.detect.outputs.code_changed != 'true'
+        run: |
+          echo "No release-affecting files changed (e.g. only test/docs/.github). Skipping version-bump check."
+          exit 0
+
+      - name: Fail when version bump was missed
+        if: steps.detect.outputs.code_changed == 'true' && steps.detect.outputs.version_files_changed != 'true'
+        run: |
+          echo "::error::This PR has code changes but no version bump. Please bump the version in pom.xml and add an entry in changelog.md."
+          exit 1
+
+      - name: Set up Java
+        if: steps.detect.outputs.code_changed == 'true' && steps.detect.outputs.version_files_changed == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '11'
+
+      - name: Check version bump
+        if: steps.detect.outputs.code_changed == 'true' && steps.detect.outputs.version_files_changed == 'true'
+        run: |
+          set -euo pipefail
+
+          POM_VERSION=$(python3 - <<'PYV'
+import xml.etree.ElementTree as ET
+root = ET.parse("pom.xml").getroot()
+ns = {"m":"http://maven.apache.org/POM/4.0.0"}
+ver = root.find("m:version", ns)
+if ver is None:
+    parent = root.find("m:parent", ns)
+    ver = parent.find("m:version", ns) if parent is not None else None
+print((ver.text if ver is not None else "").strip())
+PYV
+)
+
+          POM_VERSION="${POM_VERSION#v}"
+          POM_VERSION="${POM_VERSION%%-*}"
+          if [ -z "$POM_VERSION" ]; then
+            echo "::error::Could not read version from pom.xml"
+            exit 1
+          fi
+
+          git fetch --tags --force 2>/dev/null || true
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || true)
+          if [ -z "$LATEST_TAG" ]; then
+            echo "No existing tags found. Skipping version-bump check (first release)."
+            exit 0
+          fi
+
+          LATEST_VERSION="${LATEST_TAG#v}"
+          LATEST_VERSION="${LATEST_VERSION%%-*}"
+          if [ "$(printf '%s\n' "$LATEST_VERSION" "$POM_VERSION" | sort -V | tail -1)" != "$POM_VERSION" ]; then
+            echo "::error::Version bump required: pom.xml version ($POM_VERSION) is not greater than latest tag ($LATEST_TAG). Please bump the version in pom.xml."
+            exit 1
+          fi
+          if [ "$POM_VERSION" = "$LATEST_VERSION" ]; then
+            echo "::error::Version bump required: pom.xml version ($POM_VERSION) equals latest tag ($LATEST_TAG). Please bump the version in pom.xml."
+            exit 1
+          fi
+
+          CHANGELOG_FILE="changelog.md"
+          if [ ! -f "$CHANGELOG_FILE" ] && [ -f "CHANGELOG.md" ]; then
+            CHANGELOG_FILE="CHANGELOG.md"
+          fi
+
+          CHANGELOG_VERSION=$(sed -nE 's/^####[[:space:]]+v?([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' "$CHANGELOG_FILE" | head -1)
+          if [ -z "$CHANGELOG_VERSION" ]; then
+            echo "::error::Could not find a version entry in $CHANGELOG_FILE (expected line like '#### v1.0.0')."
+            exit 1
+          fi
+          if [ "$CHANGELOG_VERSION" != "$POM_VERSION" ]; then
+            echo "::error::CHANGELOG version mismatch: $CHANGELOG_FILE top version ($CHANGELOG_VERSION) does not match pom.xml version ($POM_VERSION). Please add or update the changelog entry for $POM_VERSION."
+            exit 1
+          fi
+
+          echo "Version bump check passed: pom.xml and $CHANGELOG_FILE are at $POM_VERSION (latest tag: $LATEST_TAG)."
