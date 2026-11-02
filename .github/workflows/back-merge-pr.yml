@@ -22,6 +22,7 @@ jobs:
       - name: Open back-merge PR if needed
         env:
           GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
           BASE_BRANCH="development"
@@ -37,7 +38,7 @@ jobs:
             exit 0
           fi
 
-          EXISTING=$(gh pr list --repo "${{ github.repository }}" \
+          EXISTING=$(gh pr list --repo "$REPO" \
             --base "$BASE_BRANCH" \
             --head "$SOURCE_BRANCH" \
             --state open \
@@ -49,7 +50,7 @@ jobs:
             exit 0
           fi
 
-          gh pr create --repo "${{ github.repository }}" \
+          gh pr create --repo "$REPO" \
             --base "$BASE_BRANCH" \
             --head "$SOURCE_BRANCH" \
             --title "chore: back-merge main into development" \
