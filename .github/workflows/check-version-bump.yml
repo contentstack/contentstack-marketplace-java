@@ -15,10 +15,11 @@ jobs:
 
       - name: Detect changed files and version bump
         id: detect
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          BASE_SHA="${{ github.event.pull_request.base.sha }}"
-          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
           FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
 
           VERSION_FILES_CHANGED=false
